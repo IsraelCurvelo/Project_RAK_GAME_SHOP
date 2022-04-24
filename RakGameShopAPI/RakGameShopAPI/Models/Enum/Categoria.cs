@@ -5,7 +5,16 @@ using System.Threading.Tasks;
 
 namespace RakGameShopAPI.Models.Enum
 {
-    public class Categoria
+    public enum Categoria
     {
+        Acao,
+        Luta,
+        Aventura,    
+        RPG,
+        Simulacao,
+        Esporte,
+        Corrida,
+        Estrategia, 
+        Puzzle
     }
 }
