@@ -3,6 +3,11 @@
       name: "HeaderBar",
       props: {
         spanLinks: String
+      },
+      data(){
+        return{
+          storeLink: 'color: white; background-color: #7e64b3; border-radius: 2px;'
+        }
       }
     };
 </script>
@@ -11,7 +16,7 @@
   <nav class="navbar navbar-expand-lg navbar-main p-0">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
-        <img src="../../assets/logo2.svg" class="w-20">
+        <img src="../../assets/logo.png" width="60px" height="auto">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -19,7 +24,10 @@
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0" :show="{spanLinks}">
           <li class="nav-item">
-            <a class="nav-link navbar-links" aria-current="page" href="#">Loja</a>
+            <a class="nav-link" aria-current="page" :style="storeLink" href="#">Loja</a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link navbar-links" aria-current="page" href="#">&nbsp;</a>
           </li>
           <li class="nav-item">
             <a class="nav-link navbar-links" aria-current="page" href="#">Biblioteca</a>
@@ -55,5 +63,12 @@
   .navbar-links:hover{
     color: white;
     background-color: #7e64b3;
+    border-radius: 2px;
+  }
+
+  .nav.navbar-links:active{
+    color: white;
+    background-color: #7e64b3;
+    border-radius: 2px;
   }
 </style>
