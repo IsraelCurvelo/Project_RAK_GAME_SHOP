@@ -11,7 +11,7 @@
 
 <template>
     <div>
-        <Header />
+        <Header spanLinks="true"/>
         <div class="container mt-5">
             <form class="form-new">
                 <p style="font-size: 20px">Criar Conta</p>
