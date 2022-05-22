@@ -1,14 +1,7 @@
 <script>
     export default {
-      name: "HeaderBar",
-      props: {
-        spanLinks: String
-      },
-      data(){
-        return{
-          storeLink: 'color: white; background-color: #7e64b3; border-radius: 2px;'
-        }
-      }
+      name: "HeaderBarAdm",
+    
     };
 </script>
 
@@ -22,19 +15,8 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0" :show="{spanLinks}">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <router-link to="/">
-              <a class="nav-link" aria-current="page" :style="storeLink" href="#">Loja</a>
-            </router-link>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link navbar-links" aria-current="page" href="#">&nbsp;</a>
-          </li>
-          <li class="nav-item">
-            <router-link to="/library">
-              <a class="nav-link navbar-links" aria-current="page" href="#">Biblioteca</a>
-            </router-link>
           </li>
         </ul>
         <form class="d-flex">

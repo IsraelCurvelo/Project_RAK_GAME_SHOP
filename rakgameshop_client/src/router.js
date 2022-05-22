@@ -3,6 +3,8 @@ import Router from 'vue-router';
 import userLogin from './components/UserLogin';
 import newUser from './components/NewUser';
 import store from './components/Store';
+import newProduct from './components/NewProduct';
+import libary from './components/Library';
 
 Vue.use(Router);
 
@@ -22,6 +24,16 @@ export default new Router({
       path: '/signin',
       nome: 'signin',
       component: newUser
+    },
+    {
+      path: '/newProduct',
+      nome: 'newProduct',
+      component: newProduct
+    },
+    {
+      path: '/library',
+      nome: 'library',
+      component: libary
     }
   ]
 })

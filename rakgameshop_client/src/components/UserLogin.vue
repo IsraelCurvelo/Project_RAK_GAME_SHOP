@@ -21,7 +21,11 @@
                             <button class="btn loginButton" type="button">Entrar</button>
                         </div>
                         <div class="row">
-                            <p style="color: white;">Nao tem uma conta? <b><a href="#" style="color: white">Cadastre-se</a></b></p>
+                            <p style="color: white;">Nao tem uma conta?
+                                <router-link to="/signin">
+                                    <b><a href="#" style="color: white">Cadastre-se</a></b>
+                                </router-link>
+                            </p>
                         </div>
                     </div>
                 </div>

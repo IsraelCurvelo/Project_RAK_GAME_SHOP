@@ -24,16 +24,16 @@
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0" :show="{spanLinks}">
           <li class="nav-item">
-            <router-link to="/">
-              <a class="nav-link" aria-current="page" :style="storeLink" href="#">Loja</a>
-            </router-link>
+              <router-link to="/">
+                  <a class="nav-link navbar-links" aria-current="page" href="#">Loja</a>
+              </router-link> 
           </li>
-          <li class="nav-item">
+           <li class="nav-item">
             <a class="nav-link navbar-links" aria-current="page" href="#">&nbsp;</a>
           </li>
           <li class="nav-item">
             <router-link to="/library">
-              <a class="nav-link navbar-links" aria-current="page" href="#">Biblioteca</a>
+                <a class="nav-link navbar-links" aria-current="page" :style="storeLink" href="#">Biblioteca</a>
             </router-link>
           </li>
         </ul>

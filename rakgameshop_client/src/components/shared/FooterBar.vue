@@ -5,7 +5,7 @@ export default {
 </script>
 
 <template>
-  <footer class="headerBar">
+  <footer class="headerBar fixed-bottom">
     <div class="container-fluid">
       <div class="row">
         <div class="col-4">
