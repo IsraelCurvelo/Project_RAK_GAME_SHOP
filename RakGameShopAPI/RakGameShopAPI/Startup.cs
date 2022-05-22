@@ -1,15 +1,21 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
+using RaellShoes.Dal;
+using RaellShoes.Data;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+
 
 namespace RakGameShopAPI
 {
@@ -26,22 +32,49 @@ namespace RakGameShopAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddDbContext<DataBaseContext>(options =>
+                   options.UseMySql(Configuration.GetConnectionString("DALContext"), builder => builder.MigrationsAssembly("RakGameShopAPI")));
+            services.AddScoped<DAL>();
+
+            //Section
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                //options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, PopularBanco popularBanco)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                popularBanco.Popular();
             }
             else
             {
+                app.UseExceptionHandler("/Cliente/Error");
                 app.UseHsts();
             }
 
             app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseStaticFiles();
+            app.UseCookiePolicy();
+            app.UseSession();
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Cliente}/{action=Index}/{id?}");
+            });
+
         }
     }
 }
