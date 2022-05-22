@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace RakGameShopAPI.Models.Admin
 {
-    public class Pedido
+    public class Pedido : EntidadeDominio
     {
-        public int Id { get; set; }
-
+      
         public Cliente Cliente { get; set; }
 
         public List<Jogo> Jogos { get; set; }

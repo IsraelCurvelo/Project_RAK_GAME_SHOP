@@ -5,10 +5,8 @@ using System.Threading.Tasks;
 
 namespace RakGameShopAPI.Models.Client
 {
-    public class Usuario
+    public class Usuario : EntidadeDominio
     {
-        public int Id { get; set; }
-
         public String Email { get; set; }
 
         public String Senha { get; set; }

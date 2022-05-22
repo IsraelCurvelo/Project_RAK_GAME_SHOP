@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace RakGameShopAPI.Models.Client
 {
-    public class Cartao
+    public class Cartao: EntidadeDominio
     {
-        public int Id { get; set; }
         public String NumeroCartao { get; set; }
         public String TitularCartao { get; set; }
         public String CPF { get; set; }
