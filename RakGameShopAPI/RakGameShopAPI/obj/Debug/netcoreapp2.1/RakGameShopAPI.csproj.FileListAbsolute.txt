@@ -5,7 +5,6 @@ C:\Users\curve\Desktop\TG\RakGameShop\RakGameShopAPI\RakGameShopAPI\bin\Debug\ne
 C:\Users\curve\Desktop\TG\RakGameShop\RakGameShopAPI\RakGameShopAPI\bin\Debug\netcoreapp2.1\RakGameShopAPI.runtimeconfig.dev.json
 C:\Users\curve\Desktop\TG\RakGameShop\RakGameShopAPI\RakGameShopAPI\bin\Debug\netcoreapp2.1\RakGameShopAPI.dll
 C:\Users\curve\Desktop\TG\RakGameShop\RakGameShopAPI\RakGameShopAPI\bin\Debug\netcoreapp2.1\RakGameShopAPI.pdb
-C:\Users\curve\Desktop\TG\RakGameShop\RakGameShopAPI\RakGameShopAPI\obj\Debug\netcoreapp2.1\RakGameShopAPI.csprojAssemblyReference.cache
 C:\Users\curve\Desktop\TG\RakGameShop\RakGameShopAPI\RakGameShopAPI\obj\Debug\netcoreapp2.1\RakGameShopAPI.AssemblyInfoInputs.cache
 C:\Users\curve\Desktop\TG\RakGameShop\RakGameShopAPI\RakGameShopAPI\obj\Debug\netcoreapp2.1\RakGameShopAPI.AssemblyInfo.cs
 C:\Users\curve\Desktop\TG\RakGameShop\RakGameShopAPI\RakGameShopAPI\obj\Debug\netcoreapp2.1\RakGameShopAPI.csproj.CoreCompileInputs.cache
@@ -15,3 +14,4 @@ C:\Users\curve\Desktop\TG\RakGameShop\RakGameShopAPI\RakGameShopAPI\obj\Debug\ne
 C:\Users\curve\Desktop\TG\RakGameShop\RakGameShopAPI\RakGameShopAPI\obj\Debug\netcoreapp2.1\RakGameShopAPI.dll
 C:\Users\curve\Desktop\TG\RakGameShop\RakGameShopAPI\RakGameShopAPI\obj\Debug\netcoreapp2.1\RakGameShopAPI.pdb
 C:\Users\curve\Desktop\TG\RakGameShop\RakGameShopAPI\RakGameShopAPI\obj\Debug\netcoreapp2.1\RakGameShopAPI.genruntimeconfig.cache
+C:\Users\curve\Desktop\TG\RakGameShop\RakGameShopAPI\RakGameShopAPI\obj\Debug\netcoreapp2.1\RakGameShopAPI.csprojAssemblyReference.cache
