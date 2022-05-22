@@ -29,7 +29,7 @@
               </router-link> 
           </li>
            <li class="nav-item">
-            <a class="nav-link navbar-links" aria-current="page" href="#">&nbsp;</a>
+            <a class="nav-link" aria-current="page" href="#">&nbsp;</a>
           </li>
           <li class="nav-item">
             <router-link to="/library">

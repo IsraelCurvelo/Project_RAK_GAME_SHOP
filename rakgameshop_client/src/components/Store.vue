@@ -51,7 +51,7 @@ export default {
         </div>
       </div>
     </div>
-    <div class="container mt-4 mb-5">
+    <div class="container mt-4" style="margin-bottom: 80px">
       <div class="row justify-content-center mb-3">
          <div class="col-3">
           <div class="card game-card">
