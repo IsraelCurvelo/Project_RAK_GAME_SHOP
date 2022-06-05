@@ -4,6 +4,16 @@
     export default {
         components:{
             Header
+        },
+        data(){
+            return{
+                cliente: {
+                    Nome: "",
+                    Apelido: "",
+                    Email: "",
+                    
+                }
+            }
         }
     }
 </script>
@@ -47,7 +57,7 @@
                         <div class="row">
                             <div class="mb-3 mt-2">
                                 <label for="exampleInputEmail1" class="form-label">Data de Nascimento</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                             </div>
                         </div>
                         <div class="row">

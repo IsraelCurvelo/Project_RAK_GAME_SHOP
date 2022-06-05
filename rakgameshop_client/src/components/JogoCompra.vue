@@ -42,14 +42,14 @@
                     </div>
                     <div class="col" style="text-align: center; margin-top: 100px; padding-right: 80px;">    
                         <h2>{{jogo.nome}}</h2>
-                        <div style="text-align: end; padding-right: 200px; margin-top: 200px;">
+                        <div style="text-align: end; padding-right: 150px; margin-top: 200px;">
                             <h4>R$ {{jogo.valor}}</h4>
                         </div>
                         <div style="align-items: center;">
-                            <div class="d-grid gap-2 col-4 mx-auto mt-4">
+                            <div class="d-grid gap-2 col-5 mx-auto mt-4">
                                 <button class="btn btn-lg btt-submit">Comprar Agora</button>
                             </div>
-                            <div class="d-grid gap-2 col-4 mx-auto mt-4">
+                            <div class="d-grid gap-2 col-5 mx-auto mt-4">
                                 <button class="btn btn-lg btt-outline-submit">Adicionar à Sacola</button>
                             </div>
                         </div>
