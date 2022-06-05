@@ -50,12 +50,12 @@ namespace RakGameShopAPI
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, PopularBanco popularBanco)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                popularBanco.Popular();
+                //popularBanco.Popular();
             }
             else
             {
