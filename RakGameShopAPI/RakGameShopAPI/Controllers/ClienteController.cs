@@ -17,8 +17,9 @@ namespace RakGameShopAPI.Controllers
         private readonly DataBaseContext dbContext;
         private readonly DAL dal;
 
-        public ClienteController()
+        public ClienteController(DataBaseContext dbContext)
         {
+            this.dbContext = dbContext;
             dal = new DAL(dbContext);
         }
 
@@ -82,7 +83,7 @@ namespace RakGameShopAPI.Controllers
         }
 
         [HttpGet("ListarCliente")]
-        public IActionResult Listar(Cliente cliente)
+        public IActionResult Listar()
         {
             return Ok();
         }

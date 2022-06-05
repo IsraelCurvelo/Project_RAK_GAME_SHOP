@@ -2,6 +2,7 @@
 using RakGameShopAPI.Models.Enum;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -26,6 +27,7 @@ namespace RakGameShopAPI.Models.Client
 
         public Usuario Usuario { get; set; }
 
+        [NotMapped]
         public List<Jogo> Jogos { get; set; }
 
         public List<Cartao> Cartoes { get; set; }

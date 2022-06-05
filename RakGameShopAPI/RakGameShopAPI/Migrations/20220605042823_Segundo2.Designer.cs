@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RaellShoes.Data;
 
 namespace RakGameShopAPI.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220605042823_Segundo2")]
+    partial class Segundo2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,6 +27,8 @@ namespace RakGameShopAPI.Migrations
                     b.Property<string>("Categoria");
 
                     b.Property<string>("Classificacao");
+
+                    b.Property<int?>("ClienteId");
 
                     b.Property<DateTime>("DataCadastro");
 
@@ -45,6 +49,8 @@ namespace RakGameShopAPI.Migrations
                     b.Property<double>("Valor");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClienteId");
 
                     b.ToTable("Jogo");
                 });
@@ -143,6 +149,13 @@ namespace RakGameShopAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Usuario");
+                });
+
+            modelBuilder.Entity("RakGameShopAPI.Models.Admin.Jogo", b =>
+                {
+                    b.HasOne("RakGameShopAPI.Models.Client.Cliente")
+                        .WithMany("Jogos")
+                        .HasForeignKey("ClienteId");
                 });
 
             modelBuilder.Entity("RakGameShopAPI.Models.Admin.Pedido", b =>

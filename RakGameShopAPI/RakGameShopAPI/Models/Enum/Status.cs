@@ -7,7 +7,7 @@ namespace RakGameShopAPI.Models.Enum
 {
     public enum Status
     {
-        Ativo,
-        Inativo
+        Inativo,
+        Ativo
     }
 }

@@ -9,14 +9,18 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace RakGameShopAPI.Controllers
-{
+{  
+    [Route("api/[controller]")]
+    [ApiController]
     public class AdminController : Controller
     {
         private readonly DataBaseContext dbContext;
         private readonly DAL dal;
 
-        public AdminController()
+      
+        public AdminController(DataBaseContext dbContext)
         {
+            this.dbContext = dbContext;
             dal = new DAL(dbContext);
         }
         public IActionResult Index()
@@ -29,11 +33,11 @@ namespace RakGameShopAPI.Controllers
         {
             try
             {
-                string confirmacaoDadosJogo = JogoService.ValidarDadosJogo(jogo);
+               string confirmacaoDadosJogo = JogoService.ValidarDadosJogo(jogo);
 
                 if (confirmacaoDadosJogo != null)
-                    return new StatusCodeResult(204);
-
+                    return new StatusCodeResult(204);                
+                
                 string confirmacao = dal.Cadastrar(jogo);
 
                 return Ok();

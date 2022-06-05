@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RaellShoes.Data;
 using RakGameShopAPI.Models;
+using RakGameShopAPI.Models.Admin;
 using System;
 using System.Collections.Generic;
 using System.Linq;

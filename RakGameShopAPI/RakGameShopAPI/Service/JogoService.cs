@@ -12,9 +12,9 @@ namespace RakGameShopAPI.Service
         {
             if (jogo.Nome != null || jogo.URLFoto != null || jogo.Descricao != null || jogo.Categoria != null
                 || jogo.Classificacao != null || jogo.Tamanho != null || jogo.DataLancamento != null || jogo.Desenvolvedora != null)
-                return "Erro - Dados obrigatórios não digitados";
-            else
                 return null;
+            else
+                return "Erro - Dados obrigatórios não digitados";
         }
     }
 }

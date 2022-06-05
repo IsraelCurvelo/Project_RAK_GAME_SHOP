@@ -13,14 +13,14 @@ namespace RakGameShopAPI.Service
         {
             if (cliente.Nome != null || cliente.Apelido != null || cliente.DataNascimento != null
                 || cliente.CPF != null || cliente.Telefone != null)
-                return "Erro - Dados Obrigatórios não digitados";
-            else
                 return null;
+            else
+                return "Erro - Dados Obrigatórios não digitados";
         }
 
         public static string ValidarDadosUsuario(Usuario usuario)
         {
-            if (usuario.Email != null || usuario.Senha != null)
+            if (usuario.Email == null || usuario.Senha == null)
                 return "Erro - Dados Obrigatórios não digitados";
 
             var input = usuario.Senha;
