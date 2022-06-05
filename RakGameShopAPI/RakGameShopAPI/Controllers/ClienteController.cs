@@ -67,9 +67,62 @@ namespace RakGameShopAPI.Controllers
                     return new StatusCodeResult(204);
 
 
-                var confirmacaoBanco = dal.Alterar(cliente);
+                string confirmacaoBanco = dal.ConsultarObjeto(cliente);
 
                 if (confirmacaoBanco != null)
+                    return new StatusCodeResult(204);
+
+                string confirmacaoAlteracao = dal.Alterar(cliente);
+
+                if (confirmacaoAlteracao != null)
+                    return new StatusCodeResult(204);
+
+                return Ok();
+
+            }             
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpGet("listarclientes")]
+        public IActionResult Listar()
+        {
+            try
+            {
+                var clientes = dal.Consultar(new Cliente());
+
+                return Ok(clientes);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpDelete("deletarcliente")]
+        public IActionResult Excluir(Cliente cliente)
+        {
+            try
+            {
+                string confirmacao = ClienteService.ValidarDadosCliente(cliente);
+
+                if (confirmacao != null)
+                    return new StatusCodeResult(204);
+
+
+                string confirmacaoBanco = dal.ConsultarObjeto(cliente);
+
+                if (confirmacaoBanco != null)
+                    return new StatusCodeResult(204);
+
+                string confirmacaoAlteracao = dal.Excluir(cliente);
+
+                if (confirmacaoAlteracao != null)
                     return new StatusCodeResult(204);
 
                 return Ok();
@@ -80,18 +133,6 @@ namespace RakGameShopAPI.Controllers
 
                 throw;
             }
-        }
-
-        [HttpGet("ListarCliente")]
-        public IActionResult Listar()
-        {
-            return Ok();
-        }
-
-        [HttpDelete("DeletarCliente")]
-        public IActionResult Excluir(Cliente cliente)
-        {
-            return Ok();
         }
     }
 }

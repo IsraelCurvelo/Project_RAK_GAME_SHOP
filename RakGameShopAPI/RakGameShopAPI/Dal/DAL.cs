@@ -95,8 +95,13 @@ namespace RaellShoes.Dal
                     {
                         resultado.Add(x);
                     }
-                    return resultado;              
-
+                    return resultado;
+                case ("cliente"):
+                    foreach (EntidadeDominio x in dbContext.Cliente.ToList())
+                    {
+                        resultado.Add(x);
+                    }
+                    return resultado;
 
                 default:
                     return null;
