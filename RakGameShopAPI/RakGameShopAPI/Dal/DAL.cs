@@ -13,14 +13,23 @@ namespace RaellShoes.Dal
         public DAL(DataBaseContext dbContext)
         {
             this.dbContext = dbContext;
-        }
-
-        public string Alterar(EntidadeDominio entidadeDominio)
-        {
-            throw new NotImplementedException();
-        }
+        }        
 
         public string Cadastrar(EntidadeDominio entidadeDominio)
+        {
+            try
+            {
+                dbContext.Add(entidadeDominio);
+                dbContext.SaveChanges();
+                return null;
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+        
+        public string Alterar(EntidadeDominio entidadeDominio)
         {
             throw new NotImplementedException();
         }

@@ -32,9 +32,10 @@ namespace RakGameShopAPI.Controllers
         {
             try
             {
-                string confirmacao = ClienteService.ValidarDadosCliente(cliente);
+                string confirmacaoDadosCliente = ClienteService.ValidarDadosCliente(cliente);
+                string confirmacaoDadosUser = ClienteService.ValidarDadosUsuario(cliente.Usuario);
 
-                if(confirmacao != null)               
+                if (confirmacaoDadosCliente != null || confirmacaoDadosUser != null)               
                     return new StatusCodeResult(204);
                 
 
