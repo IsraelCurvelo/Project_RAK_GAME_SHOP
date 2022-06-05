@@ -31,6 +31,7 @@ namespace RakGameShopAPI.Controllers
         [HttpPost("cadastrarjogo")]
         public IActionResult CadastrarJogo(Jogo jogo)
         {
+            Console.WriteLine(jogo.ToString());
             try
             {
                string confirmacaoDadosJogo = JogoService.ValidarDadosJogo(jogo);

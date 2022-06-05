@@ -7,6 +7,24 @@ export default {
     HeaderBar,
     FooterBar
   },
+  data(){
+    return{
+      jogos: [],
+      jogosCarousel: []
+    }
+  },
+  created() {
+    this.$http.get('http://localhost:5000/api/admin/buscarjogos').then(res =>{
+      this.jogos = res.body;
+      this.jogosCarousel.push(this.jogos[0]);
+      this.jogosCarousel.push(this.jogos[1]);
+      this.jogosCarousel.push(this.jogos[2]);
+      this.jogosCarousel.push(this.jogos[3]);
+
+    }, res => {
+      console.log(res);
+    });
+  }
 };
 </script>
 
@@ -22,20 +40,20 @@ export default {
                 <button type="button"  data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
               </div>
               <div class="carousel-inner">
                 <div class="carousel-item active">
-                  <img src="../assets/among_us.jpg" class="d-block w-100" />
+                  <img :src="require(`../assets/${this.jogosCarousel[0].urlFoto}`)" class="d-block w-100" />
                 </div>
                 <div class="carousel-item">
-                  <img src="../assets/cyberpunk_2077.png" class="d-block w-100" />
+                  <img :src="require(`../assets/${this.jogosCarousel[1].urlFoto}`)" class="d-block w-100" />
                 </div>
                 <div class="carousel-item">
-                  <img src="../assets/fifa_22.jpg" class="d-block w-100" />
+                  <img :src="require(`../assets/${this.jogosCarousel[2].urlFoto}`)" class="d-block w-100" />
                 </div>
-                 <div class="carousel-item">
-                  <img src="../assets/the_witcher_33.jpg" class="d-block w-100" />
+                <div class="carousel-item">
+                  <img :src="require(`../assets/${this.jogosCarousel[3].urlFoto}`)" class="d-block w-100" />
                 </div>
               </div>
               <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -53,112 +71,22 @@ export default {
     </div>
     <div class="container mt-4" style="margin-bottom: 80px">
       <div class="row justify-content-center mb-3">
-         <div class="col-3">
-          <div class="card game-card">
-            <img src="../assets/among_us.jpg" class="card-img-top">
-            <div class="card-body">
-              <div class="row mb-4">
-                <p class="card-text">Amoug Us</p>
-              </div>
-              <div class="d-flex flex-row-reverse">
-                <p class="card-text"><b>R$ 4,50</b></p>
-              </div>
-            </div>
-          </div>
-        </div>
-         <div class="col-3">
-          <div class="card game-card">
-            <img src="../assets/forza_horizon_5.jpg" class="card-img-top">
-            <div class="card-body">
-              <div class="row mb-4">
-                <p class="card-text">Forza Horizon 5</p>
-              </div>
-              <div class="d-flex flex-row-reverse">
-                <p class="card-text"><b>R$ 140,90</b></p>
+          <div v-for="jogo in jogos" :key="jogo.id" class="col-3 mb-3">
+            <div class="card game-card" style="min-height: 306px;">
+              <img :src="require(`../assets/${jogo.urlFoto}`)" class="card-img-top">
+              <div class="card-body">
+                  <div class="row">
+                    <p class="card-text"><strong>{{jogo.nome}}</strong></p>
+                  </div>
+                   <div class="row mb-4">
+                    <p class="card-text">Classificação de Idade: {{jogo.classificacao}} anos</p>
+                  </div>
+                  <div class="d-flex flex-row-reverse">
+                    <p class="card-text"><b>R$ {{jogo.valor}}</b></p>
+                  </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-3">
-          <div class="card game-card">
-            <img src="../assets/cyberpunk_2077.png" class="card-img-top">
-            <div class="card-body">
-              <div class="row mb-4">
-                <p class="card-text">cyberpuk 2077</p>
-              </div>
-              <div class="d-flex flex-row-reverse">
-                <p class="card-text"><b>R$ 99,90</b></p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="card game-card">
-            <img src="../assets/fifa_22.jpg" class="card-img-top">
-            <div class="card-body">
-              <div class="row mb-4">
-                <p class="card-text">FIFA 22</p>
-              </div>
-              <div class="d-flex flex-row-reverse">
-                <p class="card-text"><b>R$ 120,49</b></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row justify-content-center">
-         <div class="col-3">
-          <div class="card game-card">
-            <img src="../assets/rainbow_six_siege.jpg" class="card-img-top">
-            <div class="card-body">
-              <div class="row mb-4">
-                <p class="card-text">Tom Clancy's: Rainbow Six Siege</p>
-              </div>
-              <div class="d-flex flex-row-reverse">
-                <p class="card-text"><b>R$ 89,00</b></p>
-              </div>
-            </div>
-          </div>
-        </div>
-         <div class="col-3">
-          <div class="card game-card">
-            <img src="../assets/the_witcher_33.jpg" class="card-img-top">
-            <div class="card-body">
-              <div class="row mb-4">
-                <p class="card-text">The Witcher 3</p>
-              </div>
-              <div class="d-flex flex-row-reverse">
-                <p class="card-text"><b>R$ 79,50</b></p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="card game-card">
-            <img src="../assets/far-cry-6.jpeg" class="card-img-top">
-            <div class="card-body">
-              <div class="row mb-4">
-                <p class="card-text">Far Cry 6</p>
-              </div>
-              <div class="d-flex flex-row-reverse">
-                <p class="card-text"><b>R$ 69,49</b></p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-3">
-          <div class="card game-card">
-            <img src="../assets/mafia_3.jpg" class="card-img-top">
-            <div class="card-body">
-              <div class="row mb-4">
-                <p class="card-text">Mafia 3</p>
-              </div>
-              <div class="d-flex flex-row-reverse">
-                <p class="card-text"><b>R$ 79,99</b></p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
     <FooterBar />

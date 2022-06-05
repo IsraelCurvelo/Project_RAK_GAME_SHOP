@@ -15,3 +15,17 @@ C:\Users\curve\Desktop\TG\RakGameShop\RakGameShopAPI\RakGameShopAPI\obj\Debug\ne
 C:\Users\curve\Desktop\TG\RakGameShop\RakGameShopAPI\RakGameShopAPI\obj\Debug\netcoreapp2.1\RakGameShopAPI.pdb
 C:\Users\curve\Desktop\TG\RakGameShop\RakGameShopAPI\RakGameShopAPI\obj\Debug\netcoreapp2.1\RakGameShopAPI.genruntimeconfig.cache
 C:\Users\curve\Desktop\TG\RakGameShop\RakGameShopAPI\RakGameShopAPI\obj\Debug\netcoreapp2.1\RakGameShopAPI.csprojAssemblyReference.cache
+D:\Projetos\RAKGame2\Project_RAK_GAME_SHOP\RakGameShopAPI\RakGameShopAPI\bin\Debug\netcoreapp2.1\RakGameShopAPI.deps.json
+D:\Projetos\RAKGame2\Project_RAK_GAME_SHOP\RakGameShopAPI\RakGameShopAPI\bin\Debug\netcoreapp2.1\RakGameShopAPI.runtimeconfig.json
+D:\Projetos\RAKGame2\Project_RAK_GAME_SHOP\RakGameShopAPI\RakGameShopAPI\bin\Debug\netcoreapp2.1\RakGameShopAPI.runtimeconfig.dev.json
+D:\Projetos\RAKGame2\Project_RAK_GAME_SHOP\RakGameShopAPI\RakGameShopAPI\bin\Debug\netcoreapp2.1\RakGameShopAPI.dll
+D:\Projetos\RAKGame2\Project_RAK_GAME_SHOP\RakGameShopAPI\RakGameShopAPI\bin\Debug\netcoreapp2.1\RakGameShopAPI.pdb
+D:\Projetos\RAKGame2\Project_RAK_GAME_SHOP\RakGameShopAPI\RakGameShopAPI\obj\Debug\netcoreapp2.1\RakGameShopAPI.AssemblyInfoInputs.cache
+D:\Projetos\RAKGame2\Project_RAK_GAME_SHOP\RakGameShopAPI\RakGameShopAPI\obj\Debug\netcoreapp2.1\RakGameShopAPI.AssemblyInfo.cs
+D:\Projetos\RAKGame2\Project_RAK_GAME_SHOP\RakGameShopAPI\RakGameShopAPI\obj\Debug\netcoreapp2.1\RakGameShopAPI.csproj.CoreCompileInputs.cache
+D:\Projetos\RAKGame2\Project_RAK_GAME_SHOP\RakGameShopAPI\RakGameShopAPI\obj\Debug\netcoreapp2.1\RakGameShopAPI.RazorAssemblyInfo.cache
+D:\Projetos\RAKGame2\Project_RAK_GAME_SHOP\RakGameShopAPI\RakGameShopAPI\obj\Debug\netcoreapp2.1\RakGameShopAPI.RazorAssemblyInfo.cs
+D:\Projetos\RAKGame2\Project_RAK_GAME_SHOP\RakGameShopAPI\RakGameShopAPI\obj\Debug\netcoreapp2.1\RakGameShopAPI.RazorTargetAssemblyInfo.cache
+D:\Projetos\RAKGame2\Project_RAK_GAME_SHOP\RakGameShopAPI\RakGameShopAPI\obj\Debug\netcoreapp2.1\RakGameShopAPI.dll
+D:\Projetos\RAKGame2\Project_RAK_GAME_SHOP\RakGameShopAPI\RakGameShopAPI\obj\Debug\netcoreapp2.1\RakGameShopAPI.pdb
+D:\Projetos\RAKGame2\Project_RAK_GAME_SHOP\RakGameShopAPI\RakGameShopAPI\obj\Debug\netcoreapp2.1\RakGameShopAPI.csprojAssemblyReference.cache

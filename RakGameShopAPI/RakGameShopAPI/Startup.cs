@@ -54,26 +54,17 @@ namespace RakGameShopAPI
         {
             if (env.IsDevelopment())
             {
+                app.UseCors();
                 app.UseDeveloperExceptionPage();
                 //popularBanco.Popular();
             }
             else
             {
-                app.UseExceptionHandler("/Cliente/Error");
                 app.UseHsts();
             }
-
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials());
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            app.UseCookiePolicy();
-            app.UseSession();
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Cliente}/{action=Index}/{id?}");
-            });
+            app.UseMvc();
 
         }
     }
