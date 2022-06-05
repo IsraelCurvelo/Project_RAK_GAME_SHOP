@@ -13,9 +13,9 @@ namespace RakGameShopAPI.Models.Admin
 
         public String Descricao { get; set; }
 
-        public Categoria Categoria { get; set; }
+        public String Categoria { get; set; }
 
-        public Classificacao Classificacao { get; set; }
+        public String Classificacao { get; set; }
 
         public String Tamanho { get; set; }
 
@@ -36,7 +36,7 @@ namespace RakGameShopAPI.Models.Admin
 
         }
 
-        public Jogo(int id, string nome, string descricao, Categoria categoria, Classificacao classificacao, string tamanho, string desenvolvedora, DateTime dataLancamento, DateTime dataCadastro, Status status, string uRLFoto, double valor)
+        public Jogo(int id, string nome, string descricao, string categoria, string classificacao, string tamanho, string desenvolvedora, DateTime dataLancamento, DateTime dataCadastro, Status status, string uRLFoto, double valor)
         {
             Id = id;
             Nome = nome;

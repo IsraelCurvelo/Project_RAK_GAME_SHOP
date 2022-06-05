@@ -31,12 +31,62 @@ namespace RaellShoes.Dal
         
         public string Alterar(EntidadeDominio entidadeDominio)
         {
-            throw new NotImplementedException();
+            switch (entidadeDominio.GetType().Name.ToLower())
+            {
+                case ("cliente"):
+                    if (!dbContext.Cliente.Any(x => x.Id == entidadeDominio.Id))
+                    {
+                        throw new ApplicationException("Objeto não encontrado");
+                    }
+                    return ExtensaoAlterar(entidadeDominio);
+
+                case ("jogo"):
+                    if (!dbContext.Jogo.Any(x => x.Id == entidadeDominio.Id))
+                    {
+                        throw new ApplicationException("Objeto não encontrado");
+                    }
+                    return ExtensaoAlterar(entidadeDominio);             
+
+
+                default:
+                    return null;
+            }
         }
+
+        private string ExtensaoAlterar(EntidadeDominio entidadeDominio)
+        {
+            try
+            {
+                dbContext.Update(entidadeDominio);
+                dbContext.SaveChanges();
+                return null;
+            }
+            catch (ApplicationException e)
+            {
+                return e.Message;
+            }
+        }
+
+        public string Excluir(EntidadeDominio entidadeDominio)
+        {
+            try
+            {
+                dbContext.Remove(entidadeDominio);
+                dbContext.SaveChanges();
+                return null;
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
 
         public List<EntidadeDominio> Consultar(EntidadeDominio entidadeDominio)
         {
-            throw new NotImplementedException();
+            return null;
+
+            
         }
 
         public EntidadeDominio ConsultarId(EntidadeDominio entidadeDominio)
@@ -44,9 +94,8 @@ namespace RaellShoes.Dal
             throw new NotImplementedException();
         }
 
-        public string Excluir(EntidadeDominio entidadeDominio)
-        {
-            throw new NotImplementedException();
-        }
+        
+
+       
     }
 }
