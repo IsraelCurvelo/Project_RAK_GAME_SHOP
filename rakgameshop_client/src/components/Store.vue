@@ -30,7 +30,7 @@ export default {
 
 <template>
   <div>
-    <HeaderBar spanLinks="true" />
+    <HeaderBar />
     <div class="container-fluid game-carousel" style="margin-top: 70px">
       <div class="container">
         <div class="row justify-content-center align-items-center">
@@ -73,12 +73,14 @@ export default {
       <div class="row justify-content-center mb-3">
           <div v-for="jogo in jogos" :key="jogo.id" class="col-3 mb-3">
             <div class="card game-card" style="min-height: 306px;">
-              <img :src="require(`../assets/${jogo.urlFoto}`)" class="card-img-top">
+              <router-link :to="`/gameDetail:${jogo.id}`">
+                <img :src="require(`../assets/${jogo.urlFoto}`)" class="card-img-top">
+              </router-link>
               <div class="card-body">
                   <div class="row">
                     <p class="card-text"><strong>{{jogo.nome}}</strong></p>
                   </div>
-                   <div class="row mb-4">
+                  <div class="row mb-4">
                     <p class="card-text">Classificação de Idade: {{jogo.classificacao}} anos</p>
                   </div>
                   <div class="d-flex flex-row-reverse">

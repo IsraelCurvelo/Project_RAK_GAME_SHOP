@@ -1,9 +1,6 @@
 <script>
     export default {
       name: "HeaderBar",
-      props: {
-        spanLinks: String
-      },
       data(){
         return{
           storeLink: 'color: white; background-color: #7e64b3; border-radius: 2px;'

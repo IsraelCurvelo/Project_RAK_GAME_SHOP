@@ -5,6 +5,7 @@ import newUser from './components/NewUser';
 import store from './components/Store';
 import newProduct from './components/NewProduct';
 import libary from './components/Library';
+import jogoCompra from './components/JogoCompra';
 
 Vue.use(Router);
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/library',
       nome: 'library',
       component: libary
+    },
+    {
+      path: '/gameDetail:id',
+      nome: 'gameDetail',
+      component: jogoCompra,
     }
   ]
 })

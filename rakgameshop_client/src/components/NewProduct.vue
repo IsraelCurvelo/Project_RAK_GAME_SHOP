@@ -46,7 +46,7 @@
 
 <template>
     <div>
-        <Header spanLinks="true" />
+        <Header />
         <div class="container mb-5">
             <div class="row pl-5 form-new">
                 <h4>Cadastro de Produto</h4>
@@ -113,7 +113,7 @@
                                 <input v-model="jogo.Desenvolvedora" type="text" class="form-control" id="desenvolvedora">
                             </div>
                         </div>
-                         <div class="row">
+                        <div class="row">
                             <div class="mb-3 mt-2">
                                 <button class="btn btn-md btt-submit" @click="salvarJogo()">Cadastrar</button>
                             </div>
