@@ -85,9 +85,24 @@ namespace RaellShoes.Dal
 
         public List<EntidadeDominio> Consultar(EntidadeDominio entidadeDominio)
         {
-            return null;
 
-            
+            List<EntidadeDominio> resultado = new List<EntidadeDominio>();
+
+            switch (entidadeDominio.GetType().Name.ToLower())
+            {
+                case ("jogo"):
+                    foreach (EntidadeDominio x in dbContext.Jogo.ToList())
+                    {
+                        resultado.Add(x);
+                    }
+                    return resultado;              
+
+
+                default:
+                    return null;
+            }
+
+
         }
 
         public EntidadeDominio ConsultarId(EntidadeDominio entidadeDominio)

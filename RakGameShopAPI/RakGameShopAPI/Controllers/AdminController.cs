@@ -50,6 +50,24 @@ namespace RakGameShopAPI.Controllers
             }
 
         }
-       
+
+        [HttpGet("buscarjogos")]
+        public IActionResult BuscarJogos()
+        {
+            try
+            {
+                var jogos = dal.Consultar(new Jogo());
+
+                return Ok(jogos);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
     }
 }
