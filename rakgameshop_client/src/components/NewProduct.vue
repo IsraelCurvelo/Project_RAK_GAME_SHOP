@@ -104,7 +104,7 @@
                             </div>
                             <div class="col-6 mb-3 mt-2">
                                 <label class="form-label">Data de Lançamento</label>
-                                <input v-model="jogo.DataLancamento" type="text" class="form-control" id="dataLancamento">
+                                <input v-model="jogo.DataLancamento" type="date" class="form-control" id="dataLancamento">
                             </div>
                         </div>
                         <div class="row">
