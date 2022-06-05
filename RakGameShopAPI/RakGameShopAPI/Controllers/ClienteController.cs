@@ -28,7 +28,7 @@ namespace RakGameShopAPI.Controllers
             return View();
         }
 
-        [HttpPost("CadastrarCliente")]
+        [HttpPost("cadastrarcliente")]
         public IActionResult Cadastrar(Cliente cliente)
         {
             try

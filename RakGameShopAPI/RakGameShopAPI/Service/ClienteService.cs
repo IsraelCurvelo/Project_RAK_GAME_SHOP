@@ -20,6 +20,9 @@ namespace RakGameShopAPI.Service
 
         public static string ValidarDadosUsuario(Usuario usuario)
         {
+            if (usuario == null)
+                return "Erro - Não há usuário";
+
             if (usuario.Email == null || usuario.Senha == null)
                 return "Erro - Dados Obrigatórios não digitados";
 
