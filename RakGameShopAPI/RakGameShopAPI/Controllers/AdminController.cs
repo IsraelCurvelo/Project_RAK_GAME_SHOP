@@ -31,7 +31,6 @@ namespace RakGameShopAPI.Controllers
         [HttpPost("cadastrarjogo")]
         public IActionResult CadastrarJogo(Jogo jogo)
         {
-            Console.WriteLine(jogo.ToString());
             try
             {
                string confirmacaoDadosJogo = JogoService.ValidarDadosJogo(jogo);
@@ -40,6 +39,41 @@ namespace RakGameShopAPI.Controllers
                     return new StatusCodeResult(204);                
                 
                 string confirmacao = dal.Cadastrar(jogo);
+
+                if (confirmacao != null)
+                    return new StatusCodeResult(204);
+
+                return Ok();
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        [HttpPut("alterarjogo")]
+        public IActionResult AlterarJogo(Jogo jogo)
+        {
+            try
+            {
+                string confirmacaoDadosJogo = JogoService.ValidarDadosJogo(jogo);
+
+                if (confirmacaoDadosJogo != null)
+                    return new StatusCodeResult(204);
+
+
+                string confirmacaoBanco = dal.ConsultarObjeto(jogo);
+
+                if(confirmacaoBanco != null)
+                    return new StatusCodeResult(204);
+
+                string confirmacaoAlteracao = dal.Alterar(jogo);
+
+                if(confirmacaoAlteracao != null)
+                    return new StatusCodeResult(204);
 
                 return Ok();
 
@@ -69,6 +103,32 @@ namespace RakGameShopAPI.Controllers
             }
 
         }
+        [HttpDelete("excluirjogo")]
+        public IActionResult ExcluirJogo(Jogo jogo)
+        {
+            try
+            {
+                string confirmacaoBanco = dal.ConsultarObjeto(jogo);
+
+                if (confirmacaoBanco != null)
+                    return new StatusCodeResult(204);
+
+                string confirmacaoAlteracao = dal.Excluir(jogo);
+
+                if (confirmacaoAlteracao != null)
+                    return new StatusCodeResult(204);
+
+                return Ok();
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
 
     }
 }

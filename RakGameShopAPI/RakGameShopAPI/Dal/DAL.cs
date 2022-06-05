@@ -30,31 +30,31 @@ namespace RaellShoes.Dal
             }
         }
         
-        public string Alterar(EntidadeDominio entidadeDominio)
+        public string ConsultarObjeto(EntidadeDominio entidadeDominio)
         {
             switch (entidadeDominio.GetType().Name.ToLower())
             {
                 case ("cliente"):
                     if (!dbContext.Cliente.Any(x => x.Id == entidadeDominio.Id))
                     {
-                        throw new ApplicationException("Objeto não encontrado");
+                        return "Cliente não encontrado";
                     }
-                    return ExtensaoAlterar(entidadeDominio);
+                    return null;
 
                 case ("jogo"):
                     if (!dbContext.Jogo.Any(x => x.Id == entidadeDominio.Id))
                     {
-                        throw new ApplicationException("Objeto não encontrado");
+                        return "Jogo não encontrado";
                     }
-                    return ExtensaoAlterar(entidadeDominio);             
+                    return null;           
 
 
                 default:
-                    return null;
+                    return "Tabela ausente";
             }
         }
 
-        private string ExtensaoAlterar(EntidadeDominio entidadeDominio)
+        public string Alterar(EntidadeDominio entidadeDominio)
         {
             try
             {
