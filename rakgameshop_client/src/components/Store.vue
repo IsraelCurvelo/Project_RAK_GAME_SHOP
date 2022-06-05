@@ -44,16 +44,24 @@ export default {
               </div>
               <div class="carousel-inner">
                 <div class="carousel-item active">
-                  <img :src="require(`../assets/${this.jogosCarousel[0].urlFoto}`)" class="d-block w-100" />
+                 <router-link :to="`/gameDetail:${this.jogosCarousel[0].id}`">
+                    <img :src="require(`../assets/${this.jogosCarousel[0].urlFoto}`)" class="d-block w-100" />
+                  </router-link>
                 </div>
                 <div class="carousel-item">
-                  <img :src="require(`../assets/${this.jogosCarousel[1].urlFoto}`)" class="d-block w-100" />
+                   <router-link :to="`/gameDetail:${this.jogosCarousel[1].id}`">
+                    <img :src="require(`../assets/${this.jogosCarousel[1].urlFoto}`)" class="d-block w-100" />
+                  </router-link>
                 </div>
                 <div class="carousel-item">
-                  <img :src="require(`../assets/${this.jogosCarousel[2].urlFoto}`)" class="d-block w-100" />
+                  <router-link :to="`/gameDetail:${this.jogosCarousel[2].id}`">
+                    <img :src="require(`../assets/${this.jogosCarousel[2].urlFoto}`)" class="d-block w-100" />
+                  </router-link>
                 </div>
                 <div class="carousel-item">
-                  <img :src="require(`../assets/${this.jogosCarousel[3].urlFoto}`)" class="d-block w-100" />
+                  <router-link :to="`/gameDetail:${this.jogosCarousel[3].id}`">
+                    <img :src="require(`../assets/${this.jogosCarousel[3].urlFoto}`)" class="d-block w-100" />
+                  </router-link>
                 </div>
               </div>
               <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
