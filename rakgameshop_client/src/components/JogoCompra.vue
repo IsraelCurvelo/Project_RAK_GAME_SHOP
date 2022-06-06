@@ -11,11 +11,16 @@
             return{
                 id: this.$route.params.id.replace(":", ""),
                 jogo: {},
-                jogos: []
+                jogos: [],
+                usuario: {}
             }
             
         },
         mounted() {
+            this.usuario = this.$root.usuario;
+            if(this.usuario == null){
+                return this.$router.push({ name: 'login' })
+            }
             this.$http.get('http://localhost:5000/api/admin/buscarjogos').then(res =>{
                 this.jogos = res.body;
                 this.jogos.map(j => {

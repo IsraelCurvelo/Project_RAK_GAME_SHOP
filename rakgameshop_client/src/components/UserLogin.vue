@@ -5,14 +5,18 @@
                 usuario:{
                     Email: "",
                     Senha: ""
-                }
+                },
+                message: ""
             }
         },
         methods: {
             efetuarLogin(){
-                this.$http.post("http:localhost:5000/api/", this.usuario).then(res => {
+                this.$http.post("http://localhost:5000/api/cliente/login", this.usuario).then(res => {
                     if(res.status == 200){
+                        this.$root.setUsuario(res.body);
                         return this.$router.push({ name: 'store' })
+                    }else{
+                        this.message = "Verifique o Email e a Senha"
                     }
                 }, res => {
                     console.log(res);
@@ -29,6 +33,14 @@
                 <img src="../assets/logo1.svg" class="w-100" />
             </div>
             <div class="col-3">
+                <div class="col-11" v-if="message">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{message}}
+                        <button type="button" @click="message=null" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
                 <div class="card p-2 pt-3 pb-0 loginCard">
                     <div class="card-body">
                         <div class="row mb-3">
@@ -38,7 +50,7 @@
                             <input v-model="usuario.Senha" type="password" class="form-control" id="passwordImput" placeholder="Senha">
                         </div>
                         <div class="row d-grid gap-2">
-                            <button class="btn loginButton" @click="efetuarLofing()" type="button">Entrar</button>
+                            <button class="btn loginButton" @click="efetuarLogin()" type="button">Entrar</button>
                         </div>
                         <div class="row">
                             <p style="color: white;">Nao tem uma conta?

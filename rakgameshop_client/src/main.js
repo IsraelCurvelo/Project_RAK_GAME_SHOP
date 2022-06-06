@@ -20,6 +20,16 @@ Vue.use(vueResource);
 
 
 new Vue({
+  data(){
+    return{
+      usuario: null
+    }
+  },
+  methods: {
+    setUsuario(usuario){
+      this.usuario = usuario;
+    }
+  },
   router,
   vuetify,
   render: h => h(App)

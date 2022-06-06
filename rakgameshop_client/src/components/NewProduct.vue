@@ -19,9 +19,15 @@
                     URLFoto: "",
                     Status: 1
                 },
+                usuario: {}
             }    
         },
-
+        mounted(){
+            this.usuario = this.$root.usuario;
+            if(this.usuario == null){
+                return this.$router.push({ name: 'login' })
+            }
+        },
         methods: {
             gerarUrl(){
                 let stringNova = document.getElementById('fotoUrl').value.replace('C:\\fakepath\\', "");

@@ -10,8 +10,15 @@ export default {
   data(){
     return{
       jogos: [],
-      jogosCarousel: []
+      jogosCarousel: [],
+      usuario: {}
     }
+  },
+  mounted(){
+      this.usuario = this.$root.usuario;
+      if(this.usuario == null){
+        return this.$router.push({ name: 'login' })
+      }
   },
   created() {
     this.$http.get('http://localhost:5000/api/admin/buscarjogos').then(res =>{

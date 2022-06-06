@@ -11,6 +11,17 @@ export default {
     ModalBoleto,
     ModalPIX,
   },
+  data(){
+    return{
+      usuario: {}
+    }
+  },
+  mounted(){
+      this.usuario = this.$root.usuario;
+      if(this.usuario == null){
+        return this.$router.push({ name: 'login' })
+      }
+  },
   methods: {
     showAlert() {
       this.$swal('Deseja confirmar a compra?');

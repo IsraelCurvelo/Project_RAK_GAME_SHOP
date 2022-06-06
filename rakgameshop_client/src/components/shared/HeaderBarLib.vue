@@ -3,8 +3,12 @@
       name: "HeaderBar",
       data(){
         return{
-          storeLink: 'color: white; background-color: #7e64b3; border-radius: 2px;'
+          storeLink: 'color: white; background-color: #7e64b3; border-radius: 2px;',
+          usuario: {}
         }
+      },
+      mounted() {
+        this.usuario = this.$root.usuario;
       }
     };
 </script>
@@ -40,7 +44,7 @@
               <img src="../../assets/bag_icon.svg" class="w-5">
             </div>
             <div class="col">
-              <h5 style="color: white">nome_usuario</h5>
+              <h5 style="color: white">{{usuario.email}}</h5>
             </div>
             <div class="col">
               <img src="../../assets/userLogo.svg" class="w-5">
