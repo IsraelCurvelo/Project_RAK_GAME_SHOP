@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Z3/14AdaehcV+UxIEKjrlps6scxtRHLy9e0GiO7k6Cd7t36XgL+0gOFFqo602edp1O4gZCziTlcRjJz3TENInw==",
+  "dgSpecHash": "s0HE5q8FGOVCGKIfVOmOJWUyXfis5YsccmLl0fJv5WHFX4Y8YAWZZgtlHV8AR8vz28wVuDd014Pcdmn0NUsb4A==",
   "success": true,
   "projectFilePath": "C:\\Users\\curve\\Desktop\\TG\\RakGameShop\\RakGameShopAPI\\RakGameShopAPI\\RakGameShopAPI.csproj",
   "expectedPackageFiles": [
@@ -102,6 +102,8 @@
     "C:\\Users\\curve\\.nuget\\packages\\microsoft.codeanalysis.common\\2.8.0\\microsoft.codeanalysis.common.2.8.0.nupkg.sha512",
     "C:\\Users\\curve\\.nuget\\packages\\microsoft.codeanalysis.csharp\\2.8.0\\microsoft.codeanalysis.csharp.2.8.0.nupkg.sha512",
     "C:\\Users\\curve\\.nuget\\packages\\microsoft.codeanalysis.razor\\2.1.1\\microsoft.codeanalysis.razor.2.1.1.nupkg.sha512",
+    "C:\\Users\\curve\\.nuget\\packages\\microsoft.crmsdk.coreassemblies\\9.0.2.42\\microsoft.crmsdk.coreassemblies.9.0.2.42.nupkg.sha512",
+    "C:\\Users\\curve\\.nuget\\packages\\microsoft.crmsdk.xrmtooling.coreassembly\\9.1.0.110\\microsoft.crmsdk.xrmtooling.coreassembly.9.1.0.110.nupkg.sha512",
     "C:\\Users\\curve\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\curve\\.nuget\\packages\\microsoft.dotnet.platformabstractions\\2.1.0\\microsoft.dotnet.platformabstractions.2.1.0.nupkg.sha512",
     "C:\\Users\\curve\\.nuget\\packages\\microsoft.entityframeworkcore\\2.1.1\\microsoft.entityframeworkcore.2.1.1.nupkg.sha512",
@@ -285,5 +287,26 @@
     "C:\\Users\\curve\\.nuget\\packages\\system.xml.xpath\\4.3.0\\system.xml.xpath.4.3.0.nupkg.sha512",
     "C:\\Users\\curve\\.nuget\\packages\\system.xml.xpath.xdocument\\4.3.0\\system.xml.xpath.xdocument.4.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "O pacote 'Microsoft.CrmSdk.CoreAssemblies 9.0.2.42' foi restaurado usando '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' em vez da estrutura de destino do projeto '.NETCoreApp,Version=v2.1'. Esse pacote pode não ser totalmente compatível com o seu projeto.",
+      "libraryId": "Microsoft.CrmSdk.CoreAssemblies",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "O pacote 'Microsoft.CrmSdk.XrmTooling.CoreAssembly 9.1.0.110' foi restaurado usando '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' em vez da estrutura de destino do projeto '.NETCoreApp,Version=v2.1'. Esse pacote pode não ser totalmente compatível com o seu projeto.",
+      "libraryId": "Microsoft.CrmSdk.XrmTooling.CoreAssembly",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.1"
+      ]
+    }
+  ]
 }

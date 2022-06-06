@@ -1582,6 +1582,28 @@
           "lib/netstandard2.0/Microsoft.CodeAnalysis.Razor.dll": {}
         }
       },
+      "Microsoft.CrmSdk.CoreAssemblies/9.0.2.42": {
+        "type": "package",
+        "compile": {
+          "lib/net462/Microsoft.Crm.Sdk.Proxy.dll": {},
+          "lib/net462/Microsoft.Xrm.Sdk.dll": {}
+        },
+        "runtime": {
+          "lib/net462/Microsoft.Crm.Sdk.Proxy.dll": {},
+          "lib/net462/Microsoft.Xrm.Sdk.dll": {}
+        }
+      },
+      "Microsoft.CrmSdk.XrmTooling.CoreAssembly/9.1.0.110": {
+        "type": "package",
+        "compile": {
+          "lib/net462/Microsoft.Rest.ClientRuntime.dll": {},
+          "lib/net462/Microsoft.Xrm.Tooling.Connector.dll": {}
+        },
+        "runtime": {
+          "lib/net462/Microsoft.Rest.ClientRuntime.dll": {},
+          "lib/net462/Microsoft.Xrm.Tooling.Connector.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.5.0": {
         "type": "package",
         "compile": {
@@ -5699,6 +5721,42 @@
         "lib/netstandard2.0/Microsoft.CodeAnalysis.Razor.xml",
         "microsoft.codeanalysis.razor.2.1.1.nupkg.sha512",
         "microsoft.codeanalysis.razor.nuspec"
+      ]
+    },
+    "Microsoft.CrmSdk.CoreAssemblies/9.0.2.42": {
+      "sha512": "8zOc1bETaXdmEiaMBpJOqF2co+nvYzt0ypZtA1QAaqrEAhv1qIA8AVSEpdqUakhb8JfBt4ct+kOQqVeE2+TUIQ==",
+      "type": "package",
+      "path": "microsoft.crmsdk.coreassemblies/9.0.2.42",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "images/Dataverse.128x128.png",
+        "lib/LicenseTerms.docx",
+        "lib/Other Redistributable.txt",
+        "lib/Third Party Notices for Dynamics 365 SDK.docx",
+        "lib/net462/Microsoft.Crm.Sdk.Proxy.dll",
+        "lib/net462/Microsoft.Crm.Sdk.Proxy.xml",
+        "lib/net462/Microsoft.Xrm.Sdk.dll",
+        "lib/net462/Microsoft.Xrm.Sdk.xml",
+        "microsoft.crmsdk.coreassemblies.9.0.2.42.nupkg.sha512",
+        "microsoft.crmsdk.coreassemblies.nuspec"
+      ]
+    },
+    "Microsoft.CrmSdk.XrmTooling.CoreAssembly/9.1.0.110": {
+      "sha512": "Qr/wFQIyGELjkm0hF7HxVCBAy8i7tPNnxXPLVZI05W3x2wpg1A81VpndAHLuBvrTbocx/eVs6tN4CILkLXLNhw==",
+      "type": "package",
+      "path": "microsoft.crmsdk.xrmtooling.coreassembly/9.1.0.110",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "images/Dataverse.128x128.png",
+        "lib/net462/Microsoft.Rest.ClientRuntime.dll",
+        "lib/net462/Microsoft.Xrm.Tooling.Connector.dll",
+        "lib/net462/Microsoft.Xrm.Tooling.Connector.xml",
+        "lib/net462/Other Redistributable.txt",
+        "lib/net462/Third Party Notices for Dynamics 365 SDK.docx",
+        "microsoft.crmsdk.xrmtooling.coreassembly.9.1.0.110.nupkg.sha512",
+        "microsoft.crmsdk.xrmtooling.coreassembly.nuspec"
       ]
     },
     "Microsoft.CSharp/4.5.0": {
@@ -11955,6 +12013,8 @@
     ".NETCoreApp,Version=v2.1": [
       "Microsoft.AspNetCore.App >= 2.1.1",
       "Microsoft.AspNetCore.Razor.Design >= 2.1.2",
+      "Microsoft.CrmSdk.CoreAssemblies >= 9.0.2.42",
+      "Microsoft.CrmSdk.XrmTooling.CoreAssembly >= 9.1.0.110",
       "Microsoft.NETCore.App >= 2.1.0",
       "Pomelo.EntityFrameworkCore.MySql >= 2.1.1"
     ]
@@ -12014,6 +12074,14 @@
             "target": "Package",
             "version": "[2.1.2, )"
           },
+          "Microsoft.CrmSdk.CoreAssemblies": {
+            "target": "Package",
+            "version": "[9.0.2.42, )"
+          },
+          "Microsoft.CrmSdk.XrmTooling.CoreAssembly": {
+            "target": "Package",
+            "version": "[9.1.0.110, )"
+          },
           "Microsoft.NETCore.App": {
             "suppressParent": "All",
             "target": "Package",
@@ -12038,5 +12106,27 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "O pacote 'Microsoft.CrmSdk.CoreAssemblies 9.0.2.42' foi restaurado usando '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' em vez da estrutura de destino do projeto '.NETCoreApp,Version=v2.1'. Esse pacote pode não ser totalmente compatível com o seu projeto.",
+      "libraryId": "Microsoft.CrmSdk.CoreAssemblies",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "O pacote 'Microsoft.CrmSdk.XrmTooling.CoreAssembly 9.1.0.110' foi restaurado usando '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' em vez da estrutura de destino do projeto '.NETCoreApp,Version=v2.1'. Esse pacote pode não ser totalmente compatível com o seu projeto.",
+      "libraryId": "Microsoft.CrmSdk.XrmTooling.CoreAssembly",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.1"
+      ]
+    }
+  ]
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using RaellShoes.Dal;
 using RaellShoes.Data;
 using RakGameShopAPI.Models.Client;
@@ -133,6 +134,21 @@ namespace RakGameShopAPI.Controllers
 
                 throw;
             }
+        }
+
+        [HttpPost("login")]
+        public IActionResult Login(Usuario usuario)
+        {
+            bool confirm = dal.Login(usuario);
+
+            if (confirm)
+            {
+                //HttpContext.Session.SetInt32("UsuarioId", clienteLogado.IdCliente);
+                return Ok();
+            }                
+            else
+                return new StatusCodeResult(204);
+
         }
     }
 }

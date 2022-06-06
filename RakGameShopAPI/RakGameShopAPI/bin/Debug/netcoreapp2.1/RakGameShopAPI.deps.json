@@ -30,6 +30,8 @@
         "dependencies": {
           "Microsoft.AspNetCore.App": "2.1.1",
           "Microsoft.AspNetCore.Razor.Design": "2.1.2",
+          "Microsoft.CrmSdk.CoreAssemblies": "9.0.2.42",
+          "Microsoft.CrmSdk.XrmTooling.CoreAssembly": "9.1.0.110",
           "Microsoft.NETCore.App": "2.1.0",
           "Pomelo.EntityFrameworkCore.MySql": "2.1.1"
         },
@@ -41,6 +43,38 @@
         }
       },
       "Microsoft.AspNetCore.Razor.Design/2.1.2": {},
+      "Microsoft.CrmSdk.CoreAssemblies/9.0.2.42": {
+        "runtime": {
+          "lib/net462/Microsoft.Crm.Sdk.Proxy.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.2.46.5279"
+          },
+          "lib/net462/Microsoft.Xrm.Sdk.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.2.46.5279"
+          }
+        },
+        "compile": {
+          "lib/net462/Microsoft.Crm.Sdk.Proxy.dll": {},
+          "lib/net462/Microsoft.Xrm.Sdk.dll": {}
+        }
+      },
+      "Microsoft.CrmSdk.XrmTooling.CoreAssembly/9.1.0.110": {
+        "runtime": {
+          "lib/net462/Microsoft.Rest.ClientRuntime.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.3.20.0"
+          },
+          "lib/net462/Microsoft.Xrm.Tooling.Connector.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.119"
+          }
+        },
+        "compile": {
+          "lib/net462/Microsoft.Rest.ClientRuntime.dll": {},
+          "lib/net462/Microsoft.Xrm.Tooling.Connector.dll": {}
+        }
+      },
       "MySqlConnector/0.42.1": {
         "runtime": {
           "lib/netcoreapp2.1/MySqlConnector.dll": {
@@ -3220,6 +3254,20 @@
       "sha512": "sha512-fe1+dpy+eM4IX1zodsvkihO1Spuj0NecfStWzvkYoMo7/ziOsqSv4vFK36ZpBfHa4gpdCEwaU46EPzdq+ZDYhQ==",
       "path": "microsoft.aspnetcore.razor.design/2.1.2",
       "hashPath": "microsoft.aspnetcore.razor.design.2.1.2.nupkg.sha512"
+    },
+    "Microsoft.CrmSdk.CoreAssemblies/9.0.2.42": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8zOc1bETaXdmEiaMBpJOqF2co+nvYzt0ypZtA1QAaqrEAhv1qIA8AVSEpdqUakhb8JfBt4ct+kOQqVeE2+TUIQ==",
+      "path": "microsoft.crmsdk.coreassemblies/9.0.2.42",
+      "hashPath": "microsoft.crmsdk.coreassemblies.9.0.2.42.nupkg.sha512"
+    },
+    "Microsoft.CrmSdk.XrmTooling.CoreAssembly/9.1.0.110": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Qr/wFQIyGELjkm0hF7HxVCBAy8i7tPNnxXPLVZI05W3x2wpg1A81VpndAHLuBvrTbocx/eVs6tN4CILkLXLNhw==",
+      "path": "microsoft.crmsdk.xrmtooling.coreassembly/9.1.0.110",
+      "hashPath": "microsoft.crmsdk.xrmtooling.coreassembly.9.1.0.110.nupkg.sha512"
     },
     "MySqlConnector/0.42.1": {
       "type": "package",

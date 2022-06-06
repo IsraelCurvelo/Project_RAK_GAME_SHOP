@@ -31,7 +31,7 @@
                 this.DataCadastro = new Date();
                 this.jogo.URLFoto = this.gerarUrl()
                 console.log(this.jogo);
-                this.$http.post('http://localhost:5000/api/admin/cadastrarjogo', this.jogo).then(res => {
+                this.$http.post('https://localhost:44364/api/admin/cadastrarjogo', this.jogo).then(res => {
                     if(res.status == 200){
                         window.alert("Jogo Cadastrado!");
                     }

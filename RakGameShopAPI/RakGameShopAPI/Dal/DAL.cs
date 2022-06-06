@@ -2,6 +2,7 @@
 using RaellShoes.Data;
 using RakGameShopAPI.Models;
 using RakGameShopAPI.Models.Admin;
+using RakGameShopAPI.Models.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -115,8 +116,25 @@ namespace RaellShoes.Dal
             throw new NotImplementedException();
         }
 
-        
-
+        public bool Login (Usuario usuario)
+        {
+            if(usuario.Email != null)
+            {
+                var usuarioBanco = dbContext.Usuario.FirstOrDefault(x => x.Email == usuario.Email);
+                if(usuarioBanco != null)
+                {
+                    if (usuario.Senha.Equals(usuarioBanco.Senha))
+                        return true;
+                    else
+                        return false;
+                }
+                else
+                    return false;                
+            }
+            else           
+                return false;          
+            
+        }
        
     }
 }

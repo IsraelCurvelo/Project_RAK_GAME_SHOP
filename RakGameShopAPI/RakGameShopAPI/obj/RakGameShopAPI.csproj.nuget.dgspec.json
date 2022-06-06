@@ -55,6 +55,14 @@
               "target": "Package",
               "version": "[2.1.2, )"
             },
+            "Microsoft.CrmSdk.CoreAssemblies": {
+              "target": "Package",
+              "version": "[9.0.2.42, )"
+            },
+            "Microsoft.CrmSdk.XrmTooling.CoreAssembly": {
+              "target": "Package",
+              "version": "[9.1.0.110, )"
+            },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
               "target": "Package",
