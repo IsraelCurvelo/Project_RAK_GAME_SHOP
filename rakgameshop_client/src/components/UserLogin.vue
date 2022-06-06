@@ -1,5 +1,25 @@
 <script>
-    export default {};
+    export default {
+        data(){
+            return{
+                usuario:{
+                    Email: "",
+                    Senha: ""
+                }
+            }
+        },
+        methods: {
+            efetuarLogin(){
+                this.$http.post("http:localhost:5000/api/", this.usuario).then(res => {
+                    if(res.status == 200){
+                        return this.$router.push({ name: 'store' })
+                    }
+                }, res => {
+                    console.log(res);
+                })
+            }
+        }
+    };
 </script>
 
 <template>
@@ -12,13 +32,13 @@
                 <div class="card p-2 pt-3 pb-0 loginCard">
                     <div class="card-body">
                         <div class="row mb-3">
-                            <input type="email" class="form-control" id="emailImput" placeholder="E-mail">
+                            <input v-model="usuario.Email" type="email" class="form-control" id="emailImput" placeholder="E-mail">
                         </div>
                         <div class="row mb-4">
-                            <input type="password" class="form-control" id="passwordImput" placeholder="Senha">
+                            <input v-model="usuario.Senha" type="password" class="form-control" id="passwordImput" placeholder="Senha">
                         </div>
                         <div class="row d-grid gap-2">
-                            <button class="btn loginButton" type="button">Entrar</button>
+                            <button class="btn loginButton" @click="efetuarLofing()" type="button">Entrar</button>
                         </div>
                         <div class="row">
                             <p style="color: white;">Nao tem uma conta?

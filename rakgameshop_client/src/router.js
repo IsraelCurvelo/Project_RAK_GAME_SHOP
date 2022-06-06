@@ -18,57 +18,57 @@ export default new Router({
   routes:[
     {
       path: '/',
-      nome: 'store',
+      name: 'store',
       component: store
     },
     {
       path: '/login',
-      nome: 'login',
+      name: 'login',
       component: userLogin
     },
     {
       path: '/signin',
-      nome: 'signin',
+      name: 'signin',
       component: newUser
     },
     {
       path: '/newProduct',
-      nome: 'newProduct',
+      name: 'newProduct',
       component: newProduct
     },
     {
       path: '/library',
-      nome: 'library',
+      name: 'library',
       component: libary
     },
     {
       path: '/gameDetail:id',
-      nome: 'gameDetail',
+      name: 'gameDetail',
       component: jogoCompra,
     },
     {
       path: '/paymentMethod',
-      nome: 'paymentMethod',
+      name: 'paymentMethod',
       component: paymentMethod
     },
     {
       path: '/modalBoleto',
-      nome: 'modalBoleto',
+      name: 'modalBoleto',
       component: modalBoleto
     },
     {
       path: '/PIX',
-      nome: 'PIX',
+      name: 'PIX',
       component: modalPIX
     },
     {
       path: '/confirmaCompra',
-      nome: 'confirmaCompra',
+      name: 'confirmaCompra',
       component: confirmaCompra
     },
     {
       path: '/sucessoPedido',
-      nome: 'sucessoPedido',
+      name: 'sucessoPedido',
       component: sucessoPedido
     }
   ]
