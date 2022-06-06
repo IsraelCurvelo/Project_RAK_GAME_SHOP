@@ -3,7 +3,8 @@
       name: "HeaderBarAdm",
       data(){
         return{
-          usuario: {}
+          usuario: {},
+          storeLink: 'color: white; background-color: #7e64b3; border-radius: 2px;'
         }
       },
       mounted() {
@@ -23,7 +24,10 @@
       </button>
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
+          <li class="nav-item" :style="storeLink" href="#">
+            <router-link to="/">
+              <a class="nav-link navbar-links" aria-current="page" href="#">Cadastrar Jogo</a>
+            </router-link> 
           </li>
         </ul>
         <form class="d-flex">

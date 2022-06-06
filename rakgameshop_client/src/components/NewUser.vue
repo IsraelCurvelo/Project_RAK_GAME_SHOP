@@ -21,7 +21,9 @@
                     Telefone: "",
                     Status: 1,
                     Usuario: {}
-                }
+                },
+                message: null,
+                messageError: null
             }
         },
         methods: {
@@ -44,12 +46,18 @@
                 console.log(this.cliente);
                 this.$http.post('http://localhost:5000/api/cliente/cadastrarcliente', this.cliente).then(res => {
                     if(res.status == 200){
-                        window.alert("Cliente Cadastrado!");
-                        location.reload();
+                        this.messageError = null;
+                        this.message = "Cadastro concluído!";
+                    }else{
+                        this.messageError = "Revise os dados!";
                     }
                 }, res => {
                     console.log(res);
                 });
+            },
+            redirect(){
+                this.message = null;
+                return this.$router.push({ name: 'login' });
             }
         }
     }
@@ -71,6 +79,18 @@
                         <div class="row justify-content-center mt-3">
                             <div class="col-3">
                                 <h5>Dados Cadastrais</h5>
+                            </div>
+                            <div v-if="message" class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{message}}
+                                <button type="button" @click="redirect()" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div v-if="messageError" class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{messageError}}
+                                <button type="button" @click="messageError = null" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
                         </div>
                         <div class="row">

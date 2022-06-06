@@ -24,7 +24,7 @@
         },
         mounted(){
             this.usuario = this.$root.usuario;
-            if(this.usuario == null){
+            if(this.usuario == null || !this.usuario.admin){
                 return this.$router.push({ name: 'login' })
             }
         },

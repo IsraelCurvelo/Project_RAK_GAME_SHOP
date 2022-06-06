@@ -14,9 +14,12 @@
                 this.$http.post("http://localhost:5000/api/cliente/login", this.usuario).then(res => {
                     if(res.status == 200){
                         this.$root.setUsuario(res.body);
-                        return this.$router.push({ name: 'store' })
+                        if(res.body.admin){
+                            return this.$router.push({ name: 'newProduct' });
+                        }
+                    return this.$router.push({ name: 'store' });
                     }else{
-                        this.message = "Verifique o Email e a Senha"
+                        this.message = "Email ou Senha inválidos"
                     }
                 }, res => {
                     console.log(res);

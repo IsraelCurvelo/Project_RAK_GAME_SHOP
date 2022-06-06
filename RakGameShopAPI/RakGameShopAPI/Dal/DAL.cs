@@ -116,7 +116,7 @@ namespace RaellShoes.Dal
             throw new NotImplementedException();
         }
 
-        public bool Login (Usuario usuario)
+        public Usuario Login (Usuario usuario)
         {
             if(usuario.Email != null)
             {
@@ -124,15 +124,15 @@ namespace RaellShoes.Dal
                 if(usuarioBanco != null)
                 {
                     if (usuario.Senha.Equals(usuarioBanco.Senha))
-                        return true;
+                        return usuarioBanco;
                     else
-                        return false;
+                        return null;
                 }
                 else
-                    return false;                
+                    return null;                
             }
             else           
-                return false;          
+                return null;          
             
         }
        

@@ -17,6 +17,8 @@ namespace RakGameShopAPI.Models.Client
 
         public DateTime DataNascimento { get; set; }
 
+        public DateTime DataCadastro { get; set; }
+
         public Status Status { get; set; }
 
         public String CPF { get; set; }
@@ -36,12 +38,13 @@ namespace RakGameShopAPI.Models.Client
             Cartoes = new List<Cartao>();
         }
 
-        public Cliente(int id, string nome, string apelido, DateTime dataNascimento, Status status, string cPF, string telefone, Usuario usuario)
+        public Cliente(int id, string nome, string apelido, DateTime dataNascimento, DateTime dataCadastro, Status status, string cPF, string telefone, Usuario usuario)
         {
             Id = id;
             Nome = nome;
             Apelido = apelido;
-            DataNascimento = dataNascimento;
+            DataNascimento = dataNascimento; ;
+            DataCadastro = dataCadastro;
             Status = status;
             CPF = cPF;
             Telefone = telefone;

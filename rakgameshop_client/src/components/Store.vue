@@ -38,7 +38,7 @@ export default {
 <template>
   <div>
     <HeaderBar />
-    <div class="container-fluid game-carousel" style="margin-top: 70px">
+    <div class="container-fluid game-carousel">
       <div class="container">
         <div class="row justify-content-center align-items-center">
           <div class="col-8">

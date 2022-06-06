@@ -34,6 +34,7 @@ namespace RakGameShopAPI.Controllers
         {
             try
             {
+
                 string confirmacaoDadosCliente = ClienteService.ValidarDadosCliente(cliente);
                 string confirmacaoDadosUser = ClienteService.ValidarDadosUsuario(cliente.Usuario);
 
@@ -139,12 +140,12 @@ namespace RakGameShopAPI.Controllers
         [HttpPost("login")]
         public IActionResult Login(Usuario usuario)
         {
-            bool confirm = dal.Login(usuario);
+            Usuario retornado = dal.Login(usuario);
 
-            if (confirm)
+            if (retornado != null)
             {
                 //HttpContext.Session.SetInt32("UsuarioId", clienteLogado.IdCliente);
-                return Ok();
+                return Ok(retornado);
             }                
             else
                 return new StatusCodeResult(204);

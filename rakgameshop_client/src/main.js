@@ -28,6 +28,7 @@ new Vue({
   methods: {
     setUsuario(usuario){
       this.usuario = usuario;
+      console.log(this.usuario);
     }
   },
   router,
