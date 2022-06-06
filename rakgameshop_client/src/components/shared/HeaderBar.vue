@@ -13,7 +13,7 @@
 </script>
 
 <template>
-  <nav class="navbar fixed-top navbar-expand-lg navbar-main p-0">
+  <nav class="navbar navbar-expand-lg navbar-main p-0 sticky-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <img src="../../assets/logo.png" width="60px" height="auto">
