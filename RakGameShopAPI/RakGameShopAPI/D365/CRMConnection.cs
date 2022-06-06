@@ -15,8 +15,8 @@ namespace RakGameShopAPI.D365
         public static CrmServiceClient CrmNewConnection()
         {
             var urlAmbiente = "https://org.crm2.dynamics.com/";
-            var appID = "c001bd9f-499e-4c30-a964-d5d0af445d40";
-            var segredoAPP = "Jvp7Q~fMuVwNi46W8rPR0FXyVSqbm_68fKAcb";
+            var appID = "aaaa";
+            var segredoAPP = "aaa";
             var connectionString = $"url={urlAmbiente};ClientId={appID};ClientSecret={segredoAPP};AuthType=ClientSecret";
             var service = new CrmServiceClient(connectionString);
             return service;
