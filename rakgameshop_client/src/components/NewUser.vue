@@ -25,9 +25,23 @@
             }
         },
         methods: {
+            formatDate() {
+                let d = new Date();
+                let month = (d.getMonth() + 1).toString();
+                let day = d.getDate().toString();
+                let year = d.getFullYear();
+                if (month.length < 2) {
+                    month = '0' + month;
+                }
+                if (day.length < 2) {
+                    day = '0' + day;
+                }
+                return [year, month, day].join('-');
+            },
             salvarCliente(){
-                this.usuario.DataCadastro = new Date();
+                this.usuario.DataCadastro = this.formatDate();
                 this.cliente.Usuario = this.usuario;
+                console.log(this.cliente);
                 this.$http.post('http://localhost:5000/api/cliente/cadastrarcliente', this.cliente).then(res => {
                     if(res.status == 200){
                         window.alert("Cliente Cadastrado!");
@@ -74,7 +88,7 @@
                         <div class="row">
                             <div class="mb-3 mt-2">
                                 <label class="form-label">E-Mail</label>
-                                <input v-model="usuario.Email" type="email" class="form-control" id="formEmail">
+                                <input v-model="usuario.Email" type="text" class="form-control" id="formEmail">
                             </div>
                         </div>
                         <div class="row">
