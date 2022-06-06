@@ -6,6 +6,11 @@ import store from './components/Store';
 import newProduct from './components/NewProduct';
 import libary from './components/Library';
 import jogoCompra from './components/JogoCompra';
+import paymentMethod from './components/PaymentMethod';
+import modalBoleto from './components/shared/modals/Boleto';
+import modalPIX from './components/shared/modals/PIX';
+import confirmaCompra from './components/shared/modals/ConfirmaCompra';
+import sucessoPedido from './components/shared/modals/SucessoPedido';
 
 Vue.use(Router);
 
@@ -40,6 +45,31 @@ export default new Router({
       path: '/gameDetail:id',
       nome: 'gameDetail',
       component: jogoCompra,
+    },
+    {
+      path: '/paymentMethod',
+      nome: 'paymentMethod',
+      component: paymentMethod
+    },
+    {
+      path: '/modalBoleto',
+      nome: 'modalBoleto',
+      component: modalBoleto
+    },
+    {
+      path: '/PIX',
+      nome: 'PIX',
+      component: modalPIX
+    },
+    {
+      path: '/confirmaCompra',
+      nome: 'confirmaCompra',
+      component: confirmaCompra
+    },
+    {
+      path: '/sucessoPedido',
+      nome: 'sucessoPedido',
+      component: sucessoPedido
     }
   ]
 })
