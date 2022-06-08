@@ -3,6 +3,7 @@ import HeaderBar from "./shared/HeaderBarLib.vue";
 import FooterBar from "./shared/FooterBar.vue";
 import ModalBoleto from "./shared/modals/Boleto.vue";
 import ModalPIX from "./shared/modals/PIX.vue";
+import TheMask from 'vue-the-mask';
 
 export default {
   components: {
@@ -10,6 +11,7 @@ export default {
     FooterBar,
     ModalBoleto,
     ModalPIX,
+    TheMask,
   },
   data(){
     return{
@@ -17,7 +19,7 @@ export default {
     }
   },
   mounted(){
-      this.usuario = this.$root.usuario;
+    this.usuario = this.$root.usuario;
       if(this.usuario == null){
         return this.$router.push({ name: 'login' })
       }
@@ -35,8 +37,9 @@ export default {
 <template>
 
   <div>
+    <the-mask/>
     <header>
-      <HeaderBar spanLinks="true" />
+      <HeaderBar />
     </header>
 
     <div class="container">
@@ -71,9 +74,9 @@ export default {
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                   <label for="address" class="form-label" style="color: white">Número do cartão</label>
-                  <input type="text" class="form-control" id="address" placeholder="0000 0000 0000 00000" required="">
+                  <input type="text" class="form-control" id="address" placeholder="0000 0000 0000 00000" v-mask="'#### #### #### ####'" required="">
                   <div class="invalid-feedback">
-                    Insira o endereço para entrega.
+                    Insira numero do cartão.
                   </div>
 
                   <div class="row mt-2">
@@ -85,7 +88,7 @@ export default {
                     </div>
                     <div class="col-4 mt-2">
                       <label for="address2" class="form-label" style="color: white">CPF do Titular</label>
-                      <input type="text" class="form-control" id="address2" placeholder="000.000.000-00">
+                      <input type="text" class="form-control" id="address2" placeholder="000.000.000-00" v-mask="'###.###.###-##'">
                     </div>
                   </div>
 
@@ -93,7 +96,7 @@ export default {
 
                     <div class="col-md-2">
                       <label for="country" class="form-label" style="color: white">Val.</label>
-                      <input type="text" class="form-control" id="val_cartao" placeholder="00/00">
+                      <input type="text" class="form-control" id="val_cartao" placeholder="00/00" v-mask="'##/##'">
                       <div class="invalid-feedback">
                         Digite uma data válida.
                       </div>
@@ -101,7 +104,7 @@ export default {
 
                     <div class="col-md-2">
                       <label for="state" class="form-label" style="color: white">CVV</label>
-                      <input type="text" class="form-control" id="cvv_cartao" placeholder="XXX">
+                      <input type="text" class="form-control" id="cvv_cartao" placeholder="XXX" maxlength="3" v-mask="'###'">
                       <div class="invalid-feedback">
                         Selecione um estado válido.
                       </div>

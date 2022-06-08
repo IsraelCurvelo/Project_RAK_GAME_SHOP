@@ -15,9 +15,11 @@
     "core-js": "^3.6.5",
     "datepicker-bootstrap": "^1.9.13",
     "jquery": "^3.6.0",
+    "v-mask": "^2.3.0",
     "vue-resource": "^1.5.3",
     "vue-router": "^3.5.2",
     "vue-sweetalert2": "^5.0.5",
+    "vue-the-mask": "^0.11.1",
     "vuetify": "^2.4.0"
   },
   "devDependencies": {
