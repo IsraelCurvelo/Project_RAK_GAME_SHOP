@@ -7,6 +7,7 @@ namespace RakGameShopAPI.Models.Enum
 {
     public enum StatusPedido
     {
+        Sacola,
         PedidoEfetuado,
         AguardandoPagamento,
         PedidoFinalizado
