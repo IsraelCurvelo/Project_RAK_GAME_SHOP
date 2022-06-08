@@ -39,6 +39,24 @@ namespace RaellShoes.Data
                 }
             };
 
+            Cliente cliente = new Cliente
+            {
+                Nome = "Cliente Teste",
+                CPF = "123.123.123-12",
+                DataCadastro = DateTime.Now,
+                DataNascimento = new DateTime(1992, 02, 02),
+                Apelido = "Cliente Teste",
+                Status = RakGameShopAPI.Models.Enum.Status.Ativo,
+                Telefone = "11 9999 9999",
+                Usuario = new Usuario
+                {
+                    Admin = true,
+                    DataCadastro = DateTime.Now,
+                    Email = "clienteteste@rakgameshop.com",
+                    Senha = "A123456b@"
+                }
+            };
+
             Jogo jogo1 = new Jogo
             {
                 Nome = "Among Us",                
@@ -97,7 +115,7 @@ namespace RaellShoes.Data
                 Valor = 74.99
             };
 
-            dbContext.AddRange(admin);
+            dbContext.AddRange(admin, cliente);
             dbContext.AddRange(jogo1, jogo2, jogo3, jogo4);
             dbContext.SaveChanges();
 
