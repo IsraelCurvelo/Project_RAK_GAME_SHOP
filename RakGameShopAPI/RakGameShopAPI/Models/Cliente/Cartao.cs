@@ -14,6 +14,7 @@ namespace RakGameShopAPI.Models.Client
         public String Validade { get; set; }
         public String CVV { get; set; }
         public Status Status { get; set; }
+        public int Parcelas { get; set; }
         public Cartao()
         {
 

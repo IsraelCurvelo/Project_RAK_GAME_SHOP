@@ -18,7 +18,7 @@ namespace RakGameShopAPI.Models.Admin
 
         public DateTime DataCompra { get; set; }
 
-        public TipoPagamento TipoPagamento { get; set; }
+        public FormaPagamento FormaPagamento { get; set; }
 
         public double ValorTotal { get; set; }
 
@@ -31,12 +31,12 @@ namespace RakGameShopAPI.Models.Admin
             Jogos = new List<Jogo>();
         }
 
-        public Pedido(int id, Cliente cliente, DateTime dataCompra, TipoPagamento tipoPagamento, double valorTotal, StatusPedido status, int parcelamento)
+        public Pedido(int id, Cliente cliente, DateTime dataCompra, FormaPagamento formaPagamento, double valorTotal, StatusPedido status, int parcelamento)
         {
             Id = id;
             Cliente = cliente;
             DataCompra = dataCompra;
-            TipoPagamento = tipoPagamento;
+            FormaPagamento = formaPagamento;
             ValorTotal = valorTotal;
             Status = status;
             Parcelamento = parcelamento;

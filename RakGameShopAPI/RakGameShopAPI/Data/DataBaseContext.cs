@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RakGameShopAPI.Models.Admin;
 using RakGameShopAPI.Models.Client;
+using RakGameShopAPI.Models.NN;
 
 namespace RaellShoes.Data
 {
@@ -18,7 +19,10 @@ namespace RaellShoes.Data
 
         public DbSet<Cartao> Cartao { get; set; }       
 
-        public DbSet<Pedido> Pedido { get; set; }        
-        
+        public DbSet<Pedido> Pedido { get; set; }
+
+        public DbSet<PedidoJogo> PedidoJogo { get; set; }
+        public DbSet<FormaPagamento> FormaPagamento { get; set; }
+
     }
 }

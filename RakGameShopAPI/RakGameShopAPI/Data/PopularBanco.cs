@@ -47,10 +47,10 @@ namespace RaellShoes.Data
                 DataNascimento = new DateTime(1992, 02, 02),
                 Apelido = "Cliente Teste",
                 Status = RakGameShopAPI.Models.Enum.Status.Ativo,
-                Telefone = "11 9999 9999",
+                Telefone = "11 9999 9999",                
                 Usuario = new Usuario
                 {
-                    Admin = true,
+                    Admin = false,
                     DataCadastro = DateTime.Now,
                     Email = "clienteteste@rakgameshop.com",
                     Senha = "A123456b@"
