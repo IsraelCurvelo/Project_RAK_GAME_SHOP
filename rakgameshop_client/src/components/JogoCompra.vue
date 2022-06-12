@@ -39,6 +39,20 @@
             }, res => {
                 console.log(res);
             });
+            let j = []
+                j.push(this.jogo);
+                this.pedido = {
+                    Cliente: this.cliente,
+                    Jogos: j,
+                    DataCompra: "",
+                    FormaPagamento: null,
+                    ValorTotal: 0,
+                    Status: 0,
+                    Parcelamento: 1
+                };
+            this.$http.post('http://localhost:5000/api/cliente/verificarjogosacola', this.pedido).then(res => {
+                console.log(res);
+            })
         },
         methods: {
             pushPedido(){
