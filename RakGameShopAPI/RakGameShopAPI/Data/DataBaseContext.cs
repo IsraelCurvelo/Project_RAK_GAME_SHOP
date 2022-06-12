@@ -22,7 +22,12 @@ namespace RaellShoes.Data
         public DbSet<Pedido> Pedido { get; set; }
 
         public DbSet<PedidoJogo> PedidoJogo { get; set; }
+
         public DbSet<FormaPagamento> FormaPagamento { get; set; }
+
+        public DbSet<ClienteJogo> ClienteJogo { get; set; }
+
+       
 
     }
 }

@@ -3,6 +3,7 @@ using RaellShoes.Data;
 using RakGameShopAPI.Models;
 using RakGameShopAPI.Models.Admin;
 using RakGameShopAPI.Models.Client;
+using RakGameShopAPI.Models.NN;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -113,7 +114,17 @@ namespace RaellShoes.Dal
 
         public EntidadeDominio ConsultarId(EntidadeDominio entidadeDominio)
         {
-            throw new NotImplementedException();
+            List<EntidadeDominio> resultado = new List<EntidadeDominio>();
+
+            switch (entidadeDominio.GetType().Name.ToLower())
+            {
+                case ("clientejogo"):
+                    ClienteJogo clienteJogo = (ClienteJogo)entidadeDominio;
+                    return dbContext.Jogo.Where(x => x.Id == clienteJogo.JogoId).FirstOrDefault();                               
+
+                default:
+                    return null;
+            }
         }
 
         public Usuario Login (Usuario usuario)
@@ -135,6 +146,19 @@ namespace RaellShoes.Dal
                 return null;          
             
         }
-       
+
+        public Cliente BuscarClientePeloUsuario(Usuario usuario)
+        {
+            return dbContext.Cliente
+                .Include(x=> x.Usuario)
+                .Where(x => x.Usuario.Id == usuario.Id).FirstOrDefault();
+        }
+
+        public List<ClienteJogo> BuscarJogosdoCliente(Cliente cliente)
+        {            
+            return dbContext.ClienteJogo.Where(x=> x.ClienteId == cliente.Id).ToList();
+        }
+
+
     }
 }

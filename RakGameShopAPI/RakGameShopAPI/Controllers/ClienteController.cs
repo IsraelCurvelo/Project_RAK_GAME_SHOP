@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using RaellShoes.Dal;
 using RaellShoes.Data;
+using RakGameShopAPI.Models.Admin;
 using RakGameShopAPI.Models.Client;
+using RakGameShopAPI.Models.NN;
 using RakGameShopAPI.Service;
 using System;
 using System.Collections.Generic;
@@ -150,6 +152,30 @@ namespace RakGameShopAPI.Controllers
             else
                 return new StatusCodeResult(204);
 
+        }
+
+        [HttpGet("buscarcliente")]
+        public IActionResult BuscarClientePeloUsuario(Usuario usuario)
+        {
+            Cliente cliente = dal.BuscarClientePeloUsuario(usuario);
+            if (cliente != null)
+                return Ok(cliente);
+            else
+                return new StatusCodeResult(204);
+        }
+
+        [HttpGet("buscarjogoscliente")]
+        public IActionResult BuscarJogosdoCliente(Cliente cliente)
+        {
+            List<ClienteJogo> jogosDoCliente = dal.BuscarJogosdoCliente(cliente);
+            List<Jogo> jogos = new List<Jogo>();
+
+            foreach (var item in jogosDoCliente)
+            {
+                jogos.Add((Jogo)dal.ConsultarId(item));                
+            }
+
+            return Ok(jogos);
         }
     }
 }

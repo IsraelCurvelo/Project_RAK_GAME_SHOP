@@ -14,5 +14,17 @@ namespace RakGameShopAPI.Models.Admin
         public Cartao Cartao { get; set; }
 
         public string Codigo { get; set; }
+
+        public FormaPagamento()
+        {
+
+        }
+
+        public FormaPagamento(TipoPagamento tipoPagamento, Cartao cartao, string codigo)
+        {
+            TipoPagamento = tipoPagamento;
+            Cartao = cartao;
+            Codigo = codigo;
+        }
     }
 }

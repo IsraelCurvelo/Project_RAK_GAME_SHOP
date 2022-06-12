@@ -1,5 +1,6 @@
 ﻿using RakGameShopAPI.Models.Admin;
 using RakGameShopAPI.Models.Client;
+using RakGameShopAPI.Models.NN;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -115,8 +116,21 @@ namespace RaellShoes.Data
                 Valor = 74.99
             };
 
+            ClienteJogo clientejogo1 = new ClienteJogo
+            {
+                JogoId = 1,
+                ClienteId = 2
+            };
+
+            ClienteJogo clientejogo2 = new ClienteJogo
+            {
+                JogoId = 2,
+                ClienteId = 2
+            };
+
             dbContext.AddRange(admin, cliente);
             dbContext.AddRange(jogo1, jogo2, jogo3, jogo4);
+            dbContext.AddRange(clientejogo1, clientejogo2);
             dbContext.SaveChanges();
 
         }

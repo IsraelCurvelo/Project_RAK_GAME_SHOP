@@ -19,7 +19,7 @@ namespace RakGameShopAPI.Models.Client
         {
 
         }
-
+        
         public Usuario(int id, string email, string senha, DateTime dataCadastro, bool admin)
         {
             Id = id;
