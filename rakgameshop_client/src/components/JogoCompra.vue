@@ -1,5 +1,5 @@
 <script>
-    import HeaderBar from "./shared/HeaderBarLib.vue";
+    import HeaderBar from "./shared/HeaderBarBag.vue";
     import FooterBar from "./shared/FooterBar.vue";
 
     export default {
@@ -12,7 +12,9 @@
                 id: this.$route.params.id.replace(":", ""),
                 jogo: {},
                 jogos: [],
-                usuario: {}
+                usuario: {},
+                cliente: {},
+                pedido: {}
             }
             
         },
@@ -31,6 +33,28 @@
             }, res => {
                 console.log(res);
             });
+            this.$http.get('http://localhost:5000/api/cliente/buscarcliente', this.usuario).then(res =>{
+                this.cliente = res.body;
+                console.log(this.cliente);
+            }, res => {
+                console.log(res);
+            });
+        },
+        methods: {
+            pushPedido(){
+                let j = []
+                j.push(this.jogo);
+                this.pedido = {
+                    Cliente: this.cliente,
+                    Jogos: j,
+                    DataCompra: "",
+                    FormaPagamento: null,
+                    ValorTotal: 0,
+                    Status: 0,
+                    Parcelamento: 1
+                };
+                this.$http.post('http://localhost:5000/api/cliente/adicionar', this.pedido);
+            }
         }
     }
     
@@ -55,9 +79,9 @@
                                 <button class="btn btn-lg btt-submit">Comprar Agora</button>
                             </div>
                             <div class="d-grid gap-2 col-5 mx-auto mt-4">
-                                <button class="btn btn-lg btt-outline-submit">Adicionar à Sacola</button>
+                                <button class="btn btn-lg btt-outline-submit" @click="pushPedido()">Adicionar à Sacola</button>
                             </div>
-                        </div>
+                        </div>''
                     </div>
                 </div>
                 <div class="row justify-content-center">

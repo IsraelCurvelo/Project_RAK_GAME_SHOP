@@ -14,7 +14,7 @@
                     Classificacao: "",
                     Tamanho: "",
                     DataLancamento: "",
-                    DataCadastro: "2022-06-05",
+                    DataCadastro: "",
                     Desenvolvedora: "",
                     URLFoto: "",
                     Status: 1
@@ -29,12 +29,25 @@
             }
         },
         methods: {
+            formatDate() {
+                let d = new Date();
+                let month = (d.getMonth() + 1).toString();
+                let day = d.getDate().toString();
+                let year = d.getFullYear();
+                if (month.length < 2) {
+                    month = '0' + month;
+                }
+                if (day.length < 2) {
+                    day = '0' + day;
+                }
+                return [year, month, day].join('-');
+            },
             gerarUrl(){
                 let stringNova = document.getElementById('fotoUrl').value.replace('C:\\fakepath\\', "");
                 return stringNova;
             },
             salvarJogo(){
-                this.DataCadastro = new Date();
+                this.jogo.DataCadastro = this.formatDate()
                 this.jogo.URLFoto = this.gerarUrl()
                 console.log(this.jogo);
                 this.$http.post('https://localhost:44364/api/admin/cadastrarjogo', this.jogo).then(res => {
