@@ -177,5 +177,23 @@ namespace RakGameShopAPI.Controllers
 
             return Ok(jogos);
         }
+
+        [HttpPost("verificarjogosacola")]
+        public IActionResult VerificarJogoSacola(Pedido pedido)
+        {
+            bool confirmaJogoNaSacola = dal.VerificarJogoSacolaCliente(pedido);
+            bool confirmaJogoComprado = dal.VerificarJogoCompradoCliente(pedido);
+
+            if (!confirmaJogoNaSacola && !confirmaJogoComprado)
+                return Ok();
+            else
+                return new StatusCodeResult(204);
+        }
+
+        [HttpPost("adicionarsacola")]
+        public IActionResult AdicionarSacola(Pedido pedido)
+        {
+            return Ok();
+        }
     }
 }

@@ -5,19 +5,19 @@ using System.Threading.Tasks;
 
 namespace RakGameShopAPI.Models.NN
 {
-    public class PedidoJogo : EntidadeDominio
+    public class JogoNaSacola : EntidadeDominio
     {
-        public int PedidoId { get; set; }
+        public int ClienteId { get; set; }
         public int JogoId { get; set; }
 
-        public PedidoJogo()
+        public JogoNaSacola()
         {
 
         }
 
-        public PedidoJogo(int pedidoId, int jogoId)
+        public JogoNaSacola(int pedidoId, int jogoId)
         {
-            PedidoId = pedidoId;
+            ClienteId = pedidoId;
             JogoId = jogoId;
         }
     }

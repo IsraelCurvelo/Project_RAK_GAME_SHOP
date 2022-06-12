@@ -21,7 +21,7 @@ namespace RaellShoes.Data
 
         public DbSet<Pedido> Pedido { get; set; }
 
-        public DbSet<PedidoJogo> PedidoJogo { get; set; }
+        public DbSet<JogoNaSacola> JogoNaSacola { get; set; }
 
         public DbSet<FormaPagamento> FormaPagamento { get; set; }
 

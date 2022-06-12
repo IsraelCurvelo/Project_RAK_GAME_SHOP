@@ -16,6 +16,9 @@ namespace RakGameShopAPI.Models.Admin
         [NotMapped]
         public List<Jogo> Jogos { get; set; }
 
+        [NotMapped]
+        public Jogo Jogo { get; set; }
+
         public DateTime DataCompra { get; set; }
 
         public FormaPagamento FormaPagamento { get; set; }
@@ -31,7 +34,7 @@ namespace RakGameShopAPI.Models.Admin
             Jogos = new List<Jogo>();
         }
 
-        public Pedido(int id, Cliente cliente, DateTime dataCompra, FormaPagamento formaPagamento, double valorTotal, StatusPedido status, int parcelamento)
+        public Pedido(int id, Cliente cliente, DateTime dataCompra, FormaPagamento formaPagamento, double valorTotal, StatusPedido status, int parcelamento, Jogo jogo)
         {
             Id = id;
             Cliente = cliente;
@@ -41,6 +44,7 @@ namespace RakGameShopAPI.Models.Admin
             Status = status;
             Parcelamento = parcelamento;
             Jogos = new List<Jogo>();
+            Jogo = Jogo;
         }
     }
 }

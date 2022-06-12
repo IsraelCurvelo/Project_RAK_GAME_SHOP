@@ -159,6 +159,43 @@ namespace RaellShoes.Dal
             return dbContext.ClienteJogo.Where(x=> x.ClienteId == cliente.Id).ToList();
         }
 
+        public bool VerificarClienteContemSacola(Cliente cliente)
+        {
+            Pedido pedido = dbContext.Pedido.Where(x => x.Cliente.Id == cliente.Id 
+            && x.Status == RakGameShopAPI.Models.Enum.StatusPedido.Sacola).FirstOrDefault();
 
+            if (pedido != null) 
+                return true;
+            else 
+                return false;
+        }
+
+        public bool VerificarJogoSacolaCliente(Pedido pedido)
+        {
+            bool confirmaSacola = VerificarClienteContemSacola(pedido.Cliente);
+            if (confirmaSacola)
+            {
+                JogoNaSacola jogoSacola = dbContext.JogoNaSacola.Where(x => x.JogoId == pedido.Jogo.Id 
+                && x.ClienteId == pedido.Cliente.Id).FirstOrDefault();
+
+                if (jogoSacola != null)
+                    return true;
+                else
+                    return false;
+            }
+            
+            return false;
+        }
+
+        public bool VerificarJogoCompradoCliente(Pedido pedido)
+        {
+            ClienteJogo clienteJogo = dbContext.ClienteJogo.Where(x => x.ClienteId == pedido.Cliente.Id
+            && x.JogoId == pedido.Jogo.Id).FirstOrDefault();
+
+            if (clienteJogo != null)
+                return true;
+            else
+                return false;
+        }
     }
 }
