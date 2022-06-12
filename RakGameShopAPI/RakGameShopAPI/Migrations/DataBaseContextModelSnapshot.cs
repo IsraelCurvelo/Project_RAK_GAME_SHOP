@@ -17,6 +17,24 @@ namespace RakGameShopAPI.Migrations
                 .HasAnnotation("ProductVersion", "2.1.14-servicing-32113")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("RakGameShopAPI.Models.Admin.FormaPagamento", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("CartaoId");
+
+                    b.Property<string>("Codigo");
+
+                    b.Property<int>("TipoPagamento");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CartaoId");
+
+                    b.ToTable("FormaPagamento");
+                });
+
             modelBuilder.Entity("RakGameShopAPI.Models.Admin.Jogo", b =>
                 {
                     b.Property<int>("Id")
@@ -58,17 +76,19 @@ namespace RakGameShopAPI.Migrations
 
                     b.Property<DateTime>("DataCompra");
 
+                    b.Property<int?>("FormaPagamentoId");
+
                     b.Property<int>("Parcelamento");
 
                     b.Property<int>("Status");
-
-                    b.Property<int>("TipoPagamento");
 
                     b.Property<double>("ValorTotal");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ClienteId");
+
+                    b.HasIndex("FormaPagamentoId");
 
                     b.ToTable("Pedido");
                 });
@@ -85,6 +105,8 @@ namespace RakGameShopAPI.Migrations
                     b.Property<int?>("ClienteId");
 
                     b.Property<string>("NumeroCartao");
+
+                    b.Property<int>("Parcelas");
 
                     b.Property<int>("Status");
 
@@ -145,11 +167,50 @@ namespace RakGameShopAPI.Migrations
                     b.ToTable("Usuario");
                 });
 
+            modelBuilder.Entity("RakGameShopAPI.Models.NN.ClienteJogo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("ClienteId");
+
+                    b.Property<int>("JogoId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ClienteJogo");
+                });
+
+            modelBuilder.Entity("RakGameShopAPI.Models.NN.PedidoJogo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("JogoId");
+
+                    b.Property<int>("PedidoId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PedidoJogo");
+                });
+
+            modelBuilder.Entity("RakGameShopAPI.Models.Admin.FormaPagamento", b =>
+                {
+                    b.HasOne("RakGameShopAPI.Models.Client.Cartao", "Cartao")
+                        .WithMany()
+                        .HasForeignKey("CartaoId");
+                });
+
             modelBuilder.Entity("RakGameShopAPI.Models.Admin.Pedido", b =>
                 {
                     b.HasOne("RakGameShopAPI.Models.Client.Cliente", "Cliente")
                         .WithMany()
                         .HasForeignKey("ClienteId");
+
+                    b.HasOne("RakGameShopAPI.Models.Admin.FormaPagamento", "FormaPagamento")
+                        .WithMany()
+                        .HasForeignKey("FormaPagamentoId");
                 });
 
             modelBuilder.Entity("RakGameShopAPI.Models.Client.Cartao", b =>
