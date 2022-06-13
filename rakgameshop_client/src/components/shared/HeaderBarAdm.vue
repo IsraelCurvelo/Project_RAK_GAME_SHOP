@@ -33,7 +33,11 @@
         <form class="d-flex">
           <div class="row align-items-center">
            <div class="col">
-              <img src="../../assets/bag_icon.svg" class="w-5">
+            <div class="col">
+              <router-link to="/paymentMethod">
+                  <img src="../../assets/bag_icon.svg" class="w-5">
+              </router-link>
+            </div>
             </div>
             <div class="col">
               <h5 style="color: white">{{usuario.email}}</h5>

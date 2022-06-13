@@ -1,5 +1,5 @@
 <script>
-import HeaderBar from "./shared/HeaderBarLib.vue";
+import HeaderBar from "./shared/HeaderBarBag.vue";
 import FooterBar from "./shared/FooterBar.vue";
 import ModalBoleto from "./shared/modals/Boleto.vue";
 import ModalPIX from "./shared/modals/PIX.vue";
@@ -15,19 +15,32 @@ export default {
   },
   data(){
     return{
-      usuario: {}
+      usuario: {},
+      cliente: {},
+      pedido: {}
     }
   },
-  mounted(){
+   created(){
     this.usuario = this.$root.usuario;
-      if(this.usuario == null){
+    if(this.usuario == null){
         return this.$router.push({ name: 'login' })
-      }
+    }
+    this.$http.post('http://localhost:5000/api/cliente/buscarcliente', this.usuario).then(res => {
+        this.cliente = res.body;
+        
+    }, res => {
+        console.log(res);
+    });
   },
   methods: {
     showAlert() {
       this.$swal('Deseja confirmar a compra?');
     },
+    buscarSacola(){
+      this.$http.post('http://localhost:5000/api/cliente/buscarsacola', this.cliente).then(res => {
+        this.pedido = res.body;
+      })
+    }
   },
 };
 
