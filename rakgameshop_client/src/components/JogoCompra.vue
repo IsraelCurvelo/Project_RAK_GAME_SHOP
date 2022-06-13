@@ -14,18 +14,20 @@
                 jogos: [],
                 usuario: {},
                 cliente: {},
-                pedido: {}
+                message: 'Adicionar jogo à sacola',
+                disabledButton: false,
+                spawnCompra: true
             }
             
         },
-        mounted() {
+        created(){
             this.usuario = this.$root.usuario;
             if(this.usuario == null){
                 return this.$router.push({ name: 'login' })
             }
             this.$http.get('http://localhost:5000/api/admin/buscarjogos').then(res =>{
                 this.jogos = res.body;
-                this.jogos.map(j => {
+                this.jogos.map(j => {   
                     if(j.id == this.id){
                         this.jogo = j;
                     }
@@ -33,26 +35,12 @@
             }, res => {
                 console.log(res);
             });
-            var usuario = {id: 2};
-            this.$http.post('http://localhost:5000/api/cliente/buscarcliente', usuario).then(res =>{
+            this.$http.post('http://localhost:5000/api/cliente/buscarcliente', this.usuario).then(res =>{
                 this.cliente = res.body;
-                console.log(this.cliente);
+                this.validarJogo();
             }, res => {
                 console.log(res);
             });
-            let j = []
-                j.push(this.jogo);
-                this.pedido = {
-                    Cliente: this.cliente,
-                    Jogos: j,
-                    FormaPagamento: null,
-                    ValorTotal: 0,
-                    Status: 0,
-                    Parcelamento: 1
-                };
-            this.$http.post('http://localhost:5000/api/cliente/verificarjogosacola', this.pedido).then(res => {
-                console.log(res);
-            })
         },
         methods: {
             pushPedido(){
@@ -68,6 +56,32 @@
                     Parcelamento: 1
                 };
                 this.$http.post('http://localhost:5000/api/cliente/adicionar', this.pedido);
+            },
+            validarJogo(){
+                let pedido = {
+                    Cliente: this.cliente,
+                    Jogo: this.jogo
+                }
+                this.$http.post('http://localhost:5000/api/cliente/verificarjogosacola', pedido).then(res => {
+                    if(res.status == 201){
+                        
+                        this.message = 'Jogo já adicionado'
+                        this.disabledButton = true;
+                        this.spawnCompra = false;
+                            
+                    }
+                    else if(res.status == 204){
+                        this.message = 'Jogo já adquirido'
+                        this.disabledButton = true;
+                        this.spawnCompra = false;
+                    }
+                    else{
+                        this.message = 'Adicionar jogo à sacola'
+                        this.disabledButton = false;
+                        this.spawnCompra = true;
+
+                    }
+                })
             }
         }
     }
@@ -89,13 +103,13 @@
                             <h4>R$ {{jogo.valor}}</h4>
                         </div>
                         <div style="align-items: center;">
-                            <div class="d-grid gap-2 col-5 mx-auto mt-4">
+                            <div v-if="spawnCompra" class="d-grid gap-2 col-5 mx-auto mt-4">
                                 <button class="btn btn-lg btt-submit">Comprar Agora</button>
                             </div>
-                            <div class="d-grid gap-2 col-5 mx-auto mt-4">
-                                <button class="btn btn-lg btt-outline-submit" @click="pushPedido()">Adicionar à Sacola</button>
+                            <div class="d-grid gap-2 col-5 mx-auto mt-4" >
+                                <button class="btn btn-lg btt-outline-submit" :disabled="disabledButton">{{this.message}}</button>
                             </div>
-                        </div>''
+                        </div>
                     </div>
                 </div>
                 <div class="row justify-content-center">
