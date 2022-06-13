@@ -154,7 +154,7 @@ namespace RakGameShopAPI.Controllers
 
         }
 
-        [HttpGet("buscarcliente")]
+        [HttpPost("buscarcliente")]
         public IActionResult BuscarClientePeloUsuario(Usuario usuario)
         {
             Cliente cliente = dal.BuscarClientePeloUsuario(usuario);

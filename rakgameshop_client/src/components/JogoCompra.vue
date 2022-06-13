@@ -33,7 +33,8 @@
             }, res => {
                 console.log(res);
             });
-            this.$http.get('http://localhost:5000/api/cliente/buscarcliente', this.usuario).then(res =>{
+            var usuario = {id: 2};
+            this.$http.post('http://localhost:5000/api/cliente/buscarcliente', usuario).then(res =>{
                 this.cliente = res.body;
                 console.log(this.cliente);
             }, res => {
@@ -44,7 +45,6 @@
                 this.pedido = {
                     Cliente: this.cliente,
                     Jogos: j,
-                    DataCompra: "",
                     FormaPagamento: null,
                     ValorTotal: 0,
                     Status: 0,
