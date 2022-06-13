@@ -9,7 +9,7 @@ using RaellShoes.Data;
 namespace RakGameShopAPI.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20220612231239_Inicial")]
+    [Migration("20220613034422_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -183,18 +183,18 @@ namespace RakGameShopAPI.Migrations
                     b.ToTable("ClienteJogo");
                 });
 
-            modelBuilder.Entity("RakGameShopAPI.Models.NN.PedidoJogo", b =>
+            modelBuilder.Entity("RakGameShopAPI.Models.NN.JogoNaSacola", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("JogoId");
+                    b.Property<int>("ClienteId");
 
-                    b.Property<int>("PedidoId");
+                    b.Property<int>("JogoId");
 
                     b.HasKey("Id");
 
-                    b.ToTable("PedidoJogo");
+                    b.ToTable("JogoNaSacola");
                 });
 
             modelBuilder.Entity("RakGameShopAPI.Models.Admin.FormaPagamento", b =>

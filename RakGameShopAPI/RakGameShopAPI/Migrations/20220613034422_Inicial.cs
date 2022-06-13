@@ -46,17 +46,17 @@ namespace RakGameShopAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PedidoJogo",
+                name: "JogoNaSacola",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    PedidoId = table.Column<int>(nullable: false),
+                    ClienteId = table.Column<int>(nullable: false),
                     JogoId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PedidoJogo", x => x.Id);
+                    table.PrimaryKey("PK_JogoNaSacola", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -213,10 +213,10 @@ namespace RakGameShopAPI.Migrations
                 name: "Jogo");
 
             migrationBuilder.DropTable(
-                name: "Pedido");
+                name: "JogoNaSacola");
 
             migrationBuilder.DropTable(
-                name: "PedidoJogo");
+                name: "Pedido");
 
             migrationBuilder.DropTable(
                 name: "FormaPagamento");

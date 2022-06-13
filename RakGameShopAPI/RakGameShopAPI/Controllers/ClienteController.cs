@@ -219,28 +219,25 @@ namespace RakGameShopAPI.Controllers
                     Parcelamento = 0,
                     Status = Models.Enum.StatusPedido.Sacola,
                     ValorTotal = 0
-                };
+                };                
 
                 string conf = dal.Cadastrar(jogoCliente);
                 if (conf != null)
-                    return new StatusCodeResult(202);
-                else
-                    return Ok();
+                    return new StatusCodeResult(202);                
             }
-            else
+            
+            JogoNaSacola jogoNaSacola = new JogoNaSacola()
             {
-                JogoNaSacola jogoCliente = new JogoNaSacola()
-                {
-                    ClienteId = pedido.Cliente.Id,
-                    JogoId = pedido.Jogo.Id
-                };
+                ClienteId = pedido.Cliente.Id,
+                JogoId = pedido.Jogo.Id
+            };
 
-                string conf = dal.Cadastrar(jogoCliente);
-                if (conf != null)
-                    return new StatusCodeResult(202);
-                else
-                    return Ok();
-            }   
+            string confirma = dal.Cadastrar(jogoNaSacola);
+            if (confirma != null)
+                return new StatusCodeResult(202);
+            else
+                return Ok();
+              
         }
 
         [HttpDelete("removersacola")]

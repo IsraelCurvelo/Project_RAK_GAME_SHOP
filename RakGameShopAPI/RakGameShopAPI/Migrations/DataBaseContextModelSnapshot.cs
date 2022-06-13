@@ -181,18 +181,18 @@ namespace RakGameShopAPI.Migrations
                     b.ToTable("ClienteJogo");
                 });
 
-            modelBuilder.Entity("RakGameShopAPI.Models.NN.PedidoJogo", b =>
+            modelBuilder.Entity("RakGameShopAPI.Models.NN.JogoNaSacola", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("JogoId");
+                    b.Property<int>("ClienteId");
 
-                    b.Property<int>("PedidoId");
+                    b.Property<int>("JogoId");
 
                     b.HasKey("Id");
 
-                    b.ToTable("PedidoJogo");
+                    b.ToTable("JogoNaSacola");
                 });
 
             modelBuilder.Entity("RakGameShopAPI.Models.Admin.FormaPagamento", b =>
