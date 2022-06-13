@@ -205,5 +205,10 @@ namespace RaellShoes.Dal
             else
                 return false;
         }
+
+        public List<JogoNaSacola> RemoverJogoDaSacola(JogoNaSacola jogoNaSacola)
+        {
+            return dbContext.JogoNaSacola.Where(x => x.JogoId == jogoNaSacola.Id && x.ClienteId == jogoNaSacola.ClienteId).ToList();
+        }
     }
 }

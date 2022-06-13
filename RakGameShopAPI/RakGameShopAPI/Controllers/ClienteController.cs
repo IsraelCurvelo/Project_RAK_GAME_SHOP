@@ -243,9 +243,18 @@ namespace RakGameShopAPI.Controllers
             }   
         }
 
-        [HttpPost("removersacola")]
-        public IActionResult RemoverJogodaSacola(Pedido pedido)
+        [HttpDelete("removersacola")]
+        public IActionResult RemoverJogodaSacola(JogoNaSacola jogoNaSacola)
         {
+            List<JogoNaSacola> jogosNaSacola = dal.RemoverJogoDaSacola(jogoNaSacola);
+
+            foreach (var item in jogosNaSacola)
+            {
+                string conf = dal.Excluir(item);
+
+                if (conf != null)
+                    return new StatusCodeResult(202);
+            }
             return Ok();
         }
     }
