@@ -1,23 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projetos\\RAKGame3\\Project_RAK_GAME_SHOP\\RakGameShopAPI\\RakGameShopAPI\\RakGameShopAPI.csproj": {}
+    "C:\\Users\\curve\\Desktop\\TG\\RakGameShopAPI\\RakGameShopAPI\\RakGameShopAPI.csproj": {}
   },
   "projects": {
-    "D:\\Projetos\\RAKGame3\\Project_RAK_GAME_SHOP\\RakGameShopAPI\\RakGameShopAPI\\RakGameShopAPI.csproj": {
+    "C:\\Users\\curve\\Desktop\\TG\\RakGameShopAPI\\RakGameShopAPI\\RakGameShopAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projetos\\RAKGame3\\Project_RAK_GAME_SHOP\\RakGameShopAPI\\RakGameShopAPI\\RakGameShopAPI.csproj",
+        "projectUniqueName": "C:\\Users\\curve\\Desktop\\TG\\RakGameShopAPI\\RakGameShopAPI\\RakGameShopAPI.csproj",
         "projectName": "RakGameShopAPI",
-        "projectPath": "D:\\Projetos\\RAKGame3\\Project_RAK_GAME_SHOP\\RakGameShopAPI\\RakGameShopAPI\\RakGameShopAPI.csproj",
-        "packagesPath": "C:\\Users\\Dedehk\\.nuget\\packages\\",
-        "outputPath": "D:\\Projetos\\RAKGame3\\Project_RAK_GAME_SHOP\\RakGameShopAPI\\RakGameShopAPI\\obj\\",
+        "projectPath": "C:\\Users\\curve\\Desktop\\TG\\RakGameShopAPI\\RakGameShopAPI\\RakGameShopAPI.csproj",
+        "packagesPath": "C:\\Users\\curve\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\curve\\Desktop\\TG\\RakGameShopAPI\\RakGameShopAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Dedehk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\curve\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -75,7 +76,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

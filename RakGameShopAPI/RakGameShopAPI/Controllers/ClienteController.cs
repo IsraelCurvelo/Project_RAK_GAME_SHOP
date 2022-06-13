@@ -164,7 +164,7 @@ namespace RakGameShopAPI.Controllers
                 return new StatusCodeResult(204);
         }
 
-        [HttpGet("buscarjogoscliente")]
+        [HttpPost("buscarjogoscliente")]
         public IActionResult BuscarJogosdoCliente(Cliente cliente)
         {
             List<ClienteJogo> jogosDoCliente = dal.BuscarJogosdoCliente(cliente);
@@ -180,19 +180,81 @@ namespace RakGameShopAPI.Controllers
 
         [HttpPost("verificarjogosacola")]
         public IActionResult VerificarJogoSacola(Pedido pedido)
-        {
+        {//201 - se tiver na sacola // 204 - tiver comprado 
+            bool confirmaSacolaCliente = dal.VerificarClienteContemSacola(pedido.Cliente);
             bool confirmaJogoNaSacola = dal.VerificarJogoSacolaCliente(pedido);
             bool confirmaJogoComprado = dal.VerificarJogoCompradoCliente(pedido);
 
-            if (!confirmaJogoNaSacola && !confirmaJogoComprado)
-                return Ok();
-            else
+            if (confirmaJogoComprado)
                 return new StatusCodeResult(204);
+            if (confirmaJogoNaSacola)
+                return new StatusCodeResult(201);
+
+            return Ok();
         }
 
-        [HttpPost("adicionarsacola")]
-        public IActionResult AdicionarSacola(Pedido pedido)
+        [HttpPost("adicionarjogosacola")]
+        public IActionResult AdicionarJogoSacola(Pedido pedido)
+        {//201 - se tiver na sacola // 204 - tiver comprado - 202 //erro ao cadastrar ou atualizar
+            bool confirmaSacolaCliente = dal.VerificarClienteContemSacola(pedido.Cliente);
+            bool confirmaJogoNaSacola = dal.VerificarJogoSacolaCliente(pedido);
+            bool confirmaJogoComprado = dal.VerificarJogoCompradoCliente(pedido);
+
+            if(confirmaJogoComprado)
+                return new StatusCodeResult(204);
+            if(confirmaJogoNaSacola)
+                return new StatusCodeResult(201);
+
+            if (!confirmaSacolaCliente)
+            {
+                Cliente cliente = (Cliente)dal.ConsultarId(pedido.Cliente);
+                Jogo jogo = (Jogo)dal.ConsultarId(pedido.Jogo);
+
+                Pedido jogoCliente = new Pedido()
+                {
+                    Cliente = cliente,
+                    Jogo = jogo,
+                    DataCompra = DateTime.Now,
+                    FormaPagamento = null,
+                    Parcelamento = 0,
+                    Status = Models.Enum.StatusPedido.Sacola,
+                    ValorTotal = 0
+                };
+
+                string conf = dal.Cadastrar(jogoCliente);
+                if (conf != null)
+                    return new StatusCodeResult(202);
+                else
+                    return Ok();
+            }
+            else
+            {
+                JogoNaSacola jogoCliente = new JogoNaSacola()
+                {
+                    ClienteId = pedido.Cliente.Id,
+                    JogoId = pedido.Jogo.Id
+                };
+
+                string conf = dal.Cadastrar(jogoCliente);
+                if (conf != null)
+                    return new StatusCodeResult(202);
+                else
+                    return Ok();
+            }   
+        }
+
+        [HttpDelete("removersacola")]
+        public IActionResult RemoverJogodaSacola(JogoNaSacola jogoNaSacola)
         {
+            List<JogoNaSacola> jogosNaSacola = dal.RemoverJogoDaSacola(jogoNaSacola);
+
+            foreach (var item in jogosNaSacola)
+            {
+                string conf = dal.Excluir(item);
+
+                if (conf != null)
+                    return new StatusCodeResult(202);
+            }
             return Ok();
         }
     }

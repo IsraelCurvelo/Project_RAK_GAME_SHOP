@@ -120,7 +120,15 @@ namespace RaellShoes.Dal
             {
                 case ("clientejogo"):
                     ClienteJogo clienteJogo = (ClienteJogo)entidadeDominio;
-                    return dbContext.Jogo.Where(x => x.Id == clienteJogo.JogoId).FirstOrDefault();                               
+                    return dbContext.Jogo.Where(x => x.Id == clienteJogo.JogoId).FirstOrDefault();
+
+                case ("cliente"):
+                    Cliente cliente = (Cliente)entidadeDominio;
+                    return dbContext.Cliente.Where(x => x.Id == cliente.Id).FirstOrDefault();
+                
+                case ("jogo"):
+                    Jogo jogo = (Jogo)entidadeDominio;
+                    return dbContext.Jogo.Where(x => x.Id == jogo.Id).FirstOrDefault();
 
                 default:
                     return null;
@@ -196,6 +204,11 @@ namespace RaellShoes.Dal
                 return true;
             else
                 return false;
+        }
+
+        public List<JogoNaSacola> RemoverJogoDaSacola(JogoNaSacola jogoNaSacola)
+        {
+            return dbContext.JogoNaSacola.Where(x => x.JogoId == jogoNaSacola.Id && x.ClienteId == jogoNaSacola.ClienteId).ToList();
         }
     }
 }
