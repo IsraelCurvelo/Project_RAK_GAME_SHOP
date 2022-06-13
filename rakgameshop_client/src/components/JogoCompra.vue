@@ -79,13 +79,13 @@
                         this.spawnCompra = true;
                     }
                 })
+                
             },
             adicionarJogoSacola(){
                 let pedido = {
                     Cliente: this.cliente,
                     Jogo: this.jogo
                 }
-                console.log(pedido);
                 this.$http.post('http://localhost:5000/api/cliente/adicionarjogosacola', pedido).then(res => {
                     if(res.staus == 204){
                         window.alert("Jogo já adquirido");
@@ -96,10 +96,14 @@
                     else if(res.staus == 202){
                         window.alert("Erro ao adicionar");
                     }
-                    else if (res.staus == 200){
+                    else{
                         window.alert("Jogo Adicionado!");
+                        this.$router.push({ name: 'store' })
                     }
+                }, res => {
+                    console.log(res);
                 })
+                
             }
         }
     }

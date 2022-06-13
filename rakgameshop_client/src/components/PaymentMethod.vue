@@ -38,9 +38,9 @@ export default {
     },
     buscarSacola(){
       this.$http.post('http://localhost:5000/api/cliente/buscarsacola', this.cliente).then(res => {
-        if(res.status == 204){
-          console.log("Sacola Vazia")
-        }
+
+        console.log(res.body);
+
       }, res => {
         console.log(res);
       })
