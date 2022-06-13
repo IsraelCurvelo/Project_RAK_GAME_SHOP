@@ -180,6 +180,21 @@ namespace RakGameShopAPI.Controllers
 
         [HttpPost("verificarjogosacola")]
         public IActionResult VerificarJogoSacola(Pedido pedido)
+        {//201 - se tiver na sacola // 204 - tiver comprado 
+            bool confirmaSacolaCliente = dal.VerificarClienteContemSacola(pedido.Cliente);
+            bool confirmaJogoNaSacola = dal.VerificarJogoSacolaCliente(pedido);
+            bool confirmaJogoComprado = dal.VerificarJogoCompradoCliente(pedido);
+
+            if (confirmaJogoComprado)
+                return new StatusCodeResult(204);
+            if (confirmaJogoNaSacola)
+                return new StatusCodeResult(201);
+
+            return Ok();
+        }
+
+        [HttpPost("adicionarjogosacola")]
+        public IActionResult AdicionarJogoSacola(Pedido pedido)
         {//201 - se tiver na sacola // 204 - tiver comprado - 202 //erro ao cadastrar ou atualizar
             bool confirmaSacolaCliente = dal.VerificarClienteContemSacola(pedido.Cliente);
             bool confirmaJogoNaSacola = dal.VerificarJogoSacolaCliente(pedido);
