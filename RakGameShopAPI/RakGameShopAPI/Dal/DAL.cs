@@ -210,5 +210,16 @@ namespace RaellShoes.Dal
         {
             return dbContext.JogoNaSacola.Where(x => x.JogoId == jogoNaSacola.Id && x.ClienteId == jogoNaSacola.ClienteId).ToList();
         }
+
+        public Pedido BuscarSacolaCliente(Cliente cliente)
+        {
+            return dbContext.Pedido.Where(x => x.Cliente.Id == cliente.Id 
+            && x.Status == RakGameShopAPI.Models.Enum.StatusPedido.Sacola).FirstOrDefault();
+        }
+
+        public List<JogoNaSacola> BuscarJogosdoClienteNaSacola(Cliente cliente)
+        {
+            return dbContext.JogoNaSacola.Where(x => x.ClienteId == cliente.Id).ToList();
+        }
     }
 }
