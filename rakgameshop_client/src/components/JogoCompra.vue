@@ -64,22 +64,40 @@
                 }
                 this.$http.post('http://localhost:5000/api/cliente/verificarjogosacola', pedido).then(res => {
                     if(res.status == 201){
-                        
                         this.message = 'Jogo já adicionado'
                         this.disabledButton = true;
-                        this.spawnCompra = false;
-                            
+                        this.spawnCompra = false; 
                     }
                     else if(res.status == 204){
                         this.message = 'Jogo já adquirido'
                         this.disabledButton = true;
                         this.spawnCompra = false;
                     }
-                    else{
+                    else if (res.status == 200){
                         this.message = 'Adicionar jogo à sacola'
                         this.disabledButton = false;
                         this.spawnCompra = true;
-
+                    }
+                })
+            },
+            adicionarJogoSacola(){
+                let pedido = {
+                    Cliente: this.cliente,
+                    Jogo: this.jogo
+                }
+                console.log(pedido);
+                this.$http.post('http://localhost:5000/api/cliente/adicionarjogosacola', pedido).then(res => {
+                    if(res.staus == 204){
+                        window.alert("Jogo já adquirido");
+                    }
+                    else if(res.staus == 201){
+                        window.alert("Jogo já adicionado");
+                    }
+                    else if(res.staus == 202){
+                        window.alert("Erro ao adicionar");
+                    }
+                    else if (res.staus == 200){
+                        window.alert("Jogo Adicionado!");
                     }
                 })
             }
@@ -107,7 +125,7 @@
                                 <button class="btn btn-lg btt-submit">Comprar Agora</button>
                             </div>
                             <div class="d-grid gap-2 col-5 mx-auto mt-4" >
-                                <button class="btn btn-lg btt-outline-submit" :disabled="disabledButton">{{this.message}}</button>
+                                <button class="btn btn-lg btt-outline-submit" @click="adicionarJogoSacola()" :disabled="disabledButton">{{this.message}}</button>
                             </div>
                         </div>
                     </div>

@@ -27,7 +27,7 @@ export default {
     }
     this.$http.post('http://localhost:5000/api/cliente/buscarcliente', this.usuario).then(res => {
         this.cliente = res.body;
-        
+        this.buscarSacola();
     }, res => {
         console.log(res);
     });
@@ -38,7 +38,11 @@ export default {
     },
     buscarSacola(){
       this.$http.post('http://localhost:5000/api/cliente/buscarsacola', this.cliente).then(res => {
-        this.pedido = res.body;
+        if(res.status == 204){
+          console.log("Sacola Vazia")
+        }
+      }, res => {
+        console.log(res);
       })
     }
   },
