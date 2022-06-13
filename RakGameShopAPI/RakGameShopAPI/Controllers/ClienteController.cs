@@ -257,5 +257,30 @@ namespace RakGameShopAPI.Controllers
             }
             return Ok();
         }
+
+        [HttpPost("buscarsacola")]
+        public IActionResult BuscarSacola(Cliente cliente)
+        {
+            bool confirmaSacolaCliente = dal.VerificarClienteContemSacola(cliente);
+            if (confirmaSacolaCliente)
+            {
+                Pedido pedido = dal.BuscarSacolaCliente(cliente);
+                List<JogoNaSacola> jogosSacola = dal.BuscarJogosdoClienteNaSacola(cliente);
+                List<Jogo> jogos = new List<Jogo>();
+
+                foreach (var item in jogosSacola)
+                {
+                   jogos.Add((Jogo)dal.ConsultarId(new Jogo() { Id = item.JogoId }));                    
+                }
+
+                pedido.Jogos = jogos;
+
+                return Ok(pedido);
+            }
+            else
+            {
+                return new StatusCodeResult(204);
+            }  
+        }
     }
 }
