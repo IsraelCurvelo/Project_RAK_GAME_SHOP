@@ -1,3 +1,13 @@
+<script>
+    export default{
+        methods: {
+            setFlagBoleto(){
+                this.$parent.setFlagBoleto();
+            }
+        }
+    }
+</script>
+
 <template>
     <div>
 
@@ -19,7 +29,7 @@
                 </div>
             </div>
         </div>
-        <button class="accordion-button collapsed" type="button" style="color: white; background-color: #414040;"
+        <button @click="setFlagBoleto()" class="accordion-button collapsed" type="button" style="color: white; background-color: #414040;"
             data-bs-toggle="modal" href="#modalBoleto">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-upc"
                 viewBox="2 0 15 15">

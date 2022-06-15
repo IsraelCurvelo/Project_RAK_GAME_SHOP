@@ -1,3 +1,13 @@
+<script>
+    export default{
+        methods: {
+            setFlagPix(){
+                this.$parent.setFlagPix();
+            }
+        }
+    }
+</script>
+
 <template>
     <div>
         <div class="row">
@@ -25,7 +35,7 @@
                 </div>
             </div>
         </div>
-        <button class="accordion-button collapsed" type="button" style="color: white; background-color: #414040;"
+        <button @click="setFlagPix()" class="accordion-button collapsed" type="button" style="color: white; background-color: #414040;"
             data-bs-toggle="modal" href="#modalPix">
             <img src="../../../assets/pix-banco-central.svg" style="width: 30px;" />
             &nbsp; PIX

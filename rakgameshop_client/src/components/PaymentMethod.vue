@@ -17,10 +17,29 @@ export default {
     return{
       usuario: {},
       cliente: {},
-      pedido: {}
+      pedido: {
+        valorTotal: 0,
+        formaPagamento: {}
+      },
+      formaPagamento:{
+        tipoPagamento: 0,
+        codigo: '2648.5465.4789.8516.5465.4789.8516',
+      },
+      cartao:{
+        numeroCartao: '',
+        titularCartao: '',
+        cpf: '',
+        validade: '',
+        cvv: '',
+        status: 1,
+        parcelas: 1
+      },
+      flagCartao: false,
+      flagBoleto: false,
+      flagPix: false
     }
   },
-   mounted(){
+  mounted(){
     this.usuario = this.$root.usuario;
     if(this.usuario == null){
         return this.$router.push({ name: 'login' })
@@ -68,11 +87,76 @@ export default {
       })
     },
     getValorTotal(){
-      let total = 0;
-      this.pedido.jogos.forEach(jogo => {
-        total += jogo.valor;
-      });
-      return total;
+      if(this.pedido.valorTotal == 0){
+        this.pedido.jogos.forEach(jogo => {
+          this.pedido.valorTotal += jogo.valor;
+        });
+      }
+      return this.pedido.valorTotal;
+    },
+    pagamentoCartao(){
+      this.formaPagamento.tipoPagamento = 1;
+      this.formaPagamento.cartao = this.cartao
+      this.formaPagamento.codigo = '';
+      this.pedido.formaPagamento = this.formaPagamento;
+    },
+    pagamentoBoleto(){
+      this.formaPagamento.tipoPagamento = 2;
+      this.formaPagamento.codigo = '2648.5465.4789.8516.5465.4789.8516';
+      this.pedido.formaPagamento = this.formaPagamento;
+    },
+    pagamentoPix(){
+      this.formaPagamento.tipoPagamento = 3;
+      this.formaPagamento.codigo = '2648.5465.4789.8516.5465.4789.8516';
+      this.pedido.formaPagamento = this.formaPagamento;
+    },
+    setFlagCartao(){
+      this.flagCartao = true;
+      this.flagBoleto = false;
+      this.flagPix = false;
+      console.log("Cartao: " + this.flagCartao);
+      console.log("Boleto: " + this.flagBoleto);
+      console.log("PIX: " + this.flagPix);
+    },
+    setFlagBoleto(){
+      this.flagCartao = false;
+      this.flagBoleto = true;
+      this.flagPix = false;
+      console.log("Cartao: " + this.flagCartao);
+      console.log("Boleto: " + this.flagBoleto);
+      console.log("PIX: " + this.flagPix);
+    },
+    setFlagPix(){
+      this.flagCartao = false;
+      this.flagBoleto = false;
+      this.flagPix = true;
+      console.log("Cartao: " + this.flagCartao);
+      console.log("Boleto: " + this.flagBoleto);
+      console.log("PIX: " + this.flagPix);
+    },
+    formatParcela(parcela){
+      let parcelaFormat = this.pedido.valorTotal / parcela;
+      return parcelaFormat.toFixed(2);
+    },
+    finalizarPedido(){
+      if(this.flagCartao){
+        this.pagamentoCartao();
+      }
+      if(this.flagBoleto){
+        this.pagamentoBoleto();
+      }
+      if(this.flagPix){
+        this.pagamentoPix();
+      }
+      this.pedido.cliente = this.cliente;
+      this.$http.post('http://localhost:5000/api/cliente/finalizarpedido', {body: this.pedido}).then(res => {
+        if(res.status == 204){
+          window.alert("Erro ao finalizar pedido");
+        }else{
+          window.alert("Pedido finalizado!");
+          this.$router.push({ name: 'library' })
+        }
+      })
     }
   },
 };
@@ -103,7 +187,7 @@ export default {
           <div v-if="pedido.jogos.length != 0" class="accordion radio mt-4" id="accordionExample">
             <div class="accordion-item" style="background-color: #414040;">
               <h2 class="accordion-header" id="headingTwo">
-                <button class="accordion-button collapsed" type="radio" data-bs-toggle="collapse"
+                <button @click="setFlagCartao()" class="accordion-button collapsed" type="radio" data-bs-toggle="collapse"
                   data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"
                   style="color: white; background-color: #414040;">
                   <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
@@ -120,7 +204,7 @@ export default {
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                   <label for="address" class="form-label" style="color: white">Número do cartão</label>
-                  <input type="text" class="form-control" id="address" placeholder="0000 0000 0000 00000" v-mask="'#### #### #### ####'" required="">
+                  <input v-model="cartao.numeroCartao" type="text" class="form-control" id="address" placeholder="0000 0000 0000 00000" v-mask="'#### #### #### ####'" required="">
                   <div class="invalid-feedback">
                     Insira numero do cartão.
                   </div>
@@ -129,12 +213,12 @@ export default {
 
                     <div class="col-8 mt-2">
                       <label for="address2" class="form-label" style="color: white">Titular do cartão</label>
-                      <input type="text" class="form-control" id="address2"
+                      <input v-model="cartao.titularCartao" type="text" class="form-control" id="address2"
                         placeholder="José da Silva, Maria de Oliveira ..">
                     </div>
                     <div class="col-4 mt-2">
                       <label for="address2" class="form-label" style="color: white">CPF do Titular</label>
-                      <input type="text" class="form-control" id="address2" placeholder="000.000.000-00" v-mask="'###.###.###-##'">
+                      <input v-model="cartao.cpf" type="text" class="form-control" id="address2" placeholder="000.000.000-00" v-mask="'###.###.###-##'">
                     </div>
                   </div>
 
@@ -142,7 +226,7 @@ export default {
 
                     <div class="col-md-2">
                       <label for="country" class="form-label" style="color: white">Val.</label>
-                      <input type="text" class="form-control" id="val_cartao" placeholder="00/00" v-mask="'##/##'">
+                      <input v-model="cartao.validade" type="text" class="form-control" id="val_cartao" placeholder="00/00" v-mask="'##/##'">
                       <div class="invalid-feedback">
                         Digite uma data válida.
                       </div>
@@ -150,7 +234,21 @@ export default {
 
                     <div class="col-md-2">
                       <label for="state" class="form-label" style="color: white">CVV</label>
-                      <input type="text" class="form-control" id="cvv_cartao" placeholder="XXX" maxlength="3" v-mask="'###'">
+                      <input v-model="cartao.cvv" type="text" class="form-control" id="cvv_cartao" placeholder="XXX" maxlength="3" v-mask="'###'">
+                      <div class="invalid-feedback">
+                        Selecione um estado válido.
+                      </div>
+                    </div>
+                     <div class="col-md-3">
+                      <label for="state" class="form-label" style="color: white">Parcelas</label>
+                      <select v-model="cartao.parcelas" class="form-select" aria-label="Default select example">
+                        <option selected value="1">1X ({{formatParcela(1)}})</option>
+                        <option value="2">2X ({{formatParcela(2)}})</option>
+                        <option value="3">3X ({{formatParcela(3)}})</option>
+                        <option value="4">4X ({{formatParcela(4)}})</option>
+                        <option value="5">5X ({{formatParcela(5)}})</option>
+                        <option value="6">6X ({{formatParcela(6)}})</option>
+                      </select>
                       <div class="invalid-feedback">
                         Selecione um estado válido.
                       </div>
@@ -208,7 +306,7 @@ export default {
               <strong>R${{getValorTotal()}}</strong>
             </div>
             <div class="d-grid gap-2 mt-2">
-              <button :disabled="pedido.jogos.length == 0" type="button" class="btn btn-primary"
+              <button :disabled="pedido.jogos.length == 0" @click="finalizarPedido()" type="button" class="btn btn-primary"
                 style="color:white; background-color: #340E80; border-color: #340E80; font-weight: bold;">
                 FAZER PEDIDO
               </button>
