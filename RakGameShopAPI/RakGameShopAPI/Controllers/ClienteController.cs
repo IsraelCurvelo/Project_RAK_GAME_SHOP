@@ -279,5 +279,33 @@ namespace RakGameShopAPI.Controllers
                 return new StatusCodeResult(204);
             }  
         }
+
+        [HttpPost("finalizarpedido")]
+        public IActionResult FinalizarPedido(Pedido pedido)
+        {
+            pedido.Status = Models.Enum.StatusPedido.PedidoFinalizado;
+            string confirmacao = dal.Alterar(pedido);
+
+            if (confirmacao == null)
+            {
+                foreach (var item in pedido.Jogos)
+                {
+                    ClienteJogo clienteJogo = new ClienteJogo()
+                    {
+                        ClienteId = pedido.Cliente.Id,
+                        JogoId = item.Id
+                    };
+
+                    string confirmacaoCadastro = dal.Cadastrar(clienteJogo);
+
+                    JogoNaSacola jogoNaSacola = dal.ConsultarJogoNaSacola(new JogoNaSacola() { JogoId = item.Id, ClienteId = pedido.Cliente.Id });
+                    string confirmacaoExclusao = dal.Excluir(jogoNaSacola);
+
+                }
+                return Ok();
+            }
+            else
+                return new StatusCodeResult(204);
+        }
     }
 }
