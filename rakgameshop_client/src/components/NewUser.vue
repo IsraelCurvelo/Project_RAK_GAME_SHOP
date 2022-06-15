@@ -1,72 +1,74 @@
 <script>
-    import Header from './shared/HeaderBarAdm'
+import Header from './shared/HeaderBarAdm';
+import TheMask from 'vue-the-mask';
 
-    export default {
-        components:{
-            Header
-        },
-        data(){
-            return{
-                usuario: {
-                    Email: "",
-                    Senha: "",
-                    DataCadastro: "",
-                    Admin: false,
-                },
-                cliente: {
-                    Nome: "",
-                    Apelido: "",
-                    DataNascimento: "",
-                    CPF: "",
-                    Telefone: "",
-                    Status: 1,
-                    Usuario: {}
-                },
-                message: null,
-                messageError: null
-            }
-        },
-        methods: {
-            formatDate() {
-                let d = new Date();
-                let month = (d.getMonth() + 1).toString();
-                let day = d.getDate().toString();
-                let year = d.getFullYear();
-                if (month.length < 2) {
-                    month = '0' + month;
-                }
-                if (day.length < 2) {
-                    day = '0' + day;
-                }
-                return [year, month, day].join('-');
+export default {
+    components: {
+        Header,
+        TheMask,
+    },
+    data() {
+        return {
+            usuario: {
+                Email: "",
+                Senha: "",
+                DataCadastro: "",
+                Admin: false,
             },
-            salvarCliente(){
-                this.usuario.DataCadastro = this.formatDate();
-                this.cliente.Usuario = this.usuario;
-                console.log(this.cliente);
-                this.$http.post('http://localhost:5000/api/cliente/cadastrarcliente', this.cliente).then(res => {
-                    if(res.status == 200){
-                        this.messageError = null;
-                        this.message = "Cadastro concluído!";
-                    }else{
-                        this.messageError = "Revise os dados!";
-                    }
-                }, res => {
-                    console.log(res);
-                });
+            cliente: {
+                Nome: "",
+                Apelido: "",
+                DataNascimento: "",
+                CPF: "",
+                Telefone: "",
+                Status: 1,
+                Usuario: {}
             },
-            redirect(){
-                this.message = null;
-                return this.$router.push({ name: 'login' });
+            message: null,
+            messageError: null
+        }
+    },
+    methods: {
+        formatDate() {
+            let d = new Date();
+            let month = (d.getMonth() + 1).toString();
+            let day = d.getDate().toString();
+            let year = d.getFullYear();
+            if (month.length < 2) {
+                month = '0' + month;
             }
+            if (day.length < 2) {
+                day = '0' + day;
+            }
+            return [year, month, day].join('-');
+        },
+        salvarCliente() {
+            this.usuario.DataCadastro = this.formatDate();
+            this.cliente.Usuario = this.usuario;
+            console.log(this.cliente);
+            this.$http.post('http://localhost:5000/api/cliente/cadastrarcliente', this.cliente).then(res => {
+                if (res.status == 200) {
+                    this.messageError = null;
+                    this.message = "Cadastro concluído!";
+                } else {
+                    this.messageError = "Revise os dados!";
+                }
+            }, res => {
+                console.log(res);
+            });
+        },
+        redirect() {
+            this.message = null;
+            return this.$router.push({ name: 'login' });
         }
     }
+}
 </script>
 
 
 <template>
     <div>
-        <Header spanLinks="true"/>
+        <Header spanLinks="true" />
         <div class="container mt-5">
             <form class="form-new">
                 <p style="font-size: 20px">Criar Conta</p>
@@ -81,14 +83,16 @@
                                 <h5>Dados Cadastrais</h5>
                             </div>
                             <div v-if="message" class="alert alert-success alert-dismissible fade show" role="alert">
-                                {{message}}
+                                {{ message }}
                                 <button type="button" @click="redirect()" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div v-if="messageError" class="alert alert-danger alert-dismissible fade show" role="alert">
-                                {{messageError}}
-                                <button type="button" @click="messageError = null" data-dismiss="alert" aria-label="Close">
+                            <div v-if="messageError" class="alert alert-danger alert-dismissible fade show"
+                                role="alert">
+                                {{ messageError }}
+                                <button type="button" @click="messageError = null" data-dismiss="alert"
+                                    aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -114,19 +118,23 @@
                         <div class="row">
                             <div class="mb-3 mt-2">
                                 <label class="form-label">Data de Nascimento</label>
-                                <input v-model="cliente.DataNascimento" type="date" class="form-control" id="formDataNascimento">
+                                <input v-model="cliente.DataNascimento" type="date" class="form-control"
+                                    id="formDataNascimento">
                             </div>
                         </div>
                         <div class="row">
                             <div class="mb-3 mt-2">
                                 <label class="form-label">CPF</label>
-                                <input v-model="cliente.CPF" type="text" class="form-control" id="formCpf">
+                                <the-mask />
+                                <input v-model="cliente.CPF" type="text" class="form-control" id="formCpf"
+                                    v-mask="'###.###.###-##'">
                             </div>
                         </div>
                         <div class="row">
                             <div class="mb-3 mt-2">
                                 <label class="form-label">Telefone</label>
-                                <input v-model="cliente.Telefone" type="text" class="form-control" id="formTelefone">
+                                <input v-model="cliente.Telefone" type="text" class="form-control" id="formTelefone"
+                                    v-mask="['(##) ####-####', '(##) #####-####']">
                             </div>
                         </div>
                         <div class="row">
@@ -144,20 +152,21 @@
                 </div>
             </div>
         </div>
-    </div>  
+    </div>
 </template>
 
 <style>
-    .form-new{
-        color: white;
-    }
-    .btt-enviar{
-        color: #ffff;
-        background-color: #340E80;
-    }
+.form-new {
+    color: white;
+}
 
-    .btt-enviar:hover{
-        color: #ffff;
-        background-color: #7e64b3;
-    }
+.btt-enviar {
+    color: #ffff;
+    background-color: #340E80;
+}
+
+.btt-enviar:hover {
+    color: #ffff;
+    background-color: #7e64b3;
+}
 </style>
