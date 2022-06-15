@@ -20,7 +20,7 @@ export default {
       pedido: {}
     }
   },
-   created(){
+   mounted(){
     this.usuario = this.$root.usuario;
     if(this.usuario == null){
         return this.$router.push({ name: 'login' })
@@ -37,13 +37,42 @@ export default {
       this.$swal('Deseja confirmar a compra?');
     },
     buscarSacola(){
-      this.$http.post('http://localhost:5000/api/cliente/buscarsacola', this.cliente).then(res => {
-
-        console.log(res.body);
+      this.$http.post('http://localhost:5000/api/cliente/buscarsacola', this.cliente).then(res => { 
+        this.pedido = res.body 
 
       }, res => {
         console.log(res);
       })
+    },
+    removerTodos(){
+      this.pedido.jogos.forEach(jogo => {
+        this.removerJogo(jogo, false)
+      })
+      window.alert("Removidos");
+    },
+    removerJogo(jogo, messagem){
+      const jogoNaSacola = {
+        JogoId: jogo.id,
+        ClienteId: this.cliente.id
+      };
+      this.$http.delete('http://localhost:5000/api/cliente/removersacola', {body: jogoNaSacola}).then(res => {
+        if(res.status == 202){
+          window.alert("Erro ao excluir");
+        }else{
+          let i = this.pedido.jogos.indexOf(jogo);
+          this.pedido.jogos.splice(i, 1);
+          if(messagem){
+            window.alert("Removido");
+          } 
+        }
+      })
+    },
+    getValorTotal(){
+      let total = 0;
+      this.pedido.jogos.forEach(jogo => {
+        total += jogo.valor;
+      });
+      return total;
     }
   },
 };
@@ -56,22 +85,22 @@ export default {
   <div>
     <the-mask/>
     <header>
-      <HeaderBar />
+      <HeaderBar /> 
     </header>
 
     <div class="container">
       <div class="py-5 text-center">
       </div>
 
-      <div class="row g-5">
+      <div v-if="pedido.jogos" class="row g-5">
 
         <div class="col-md-12 col-lg-8 container clearfix">
-          <h4 style="color: white">Finalizar compra</h4>
+          <h4 style="color: white">Finalizar Compra</h4>
 
           
           <hr style="color: white">
 
-          <div class="accordion radio mt-4" id="accordionExample">
+          <div v-if="pedido.jogos.length != 0" class="accordion radio mt-4" id="accordionExample">
             <div class="accordion-item" style="background-color: #414040;">
               <h2 class="accordion-header" id="headingTwo">
                 <button class="accordion-button collapsed" type="radio" data-bs-toggle="collapse"
@@ -146,47 +175,29 @@ export default {
         <div class="col-md-5 col-lg-4 order-md-last">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="" style="color: white">Carrinho</span>
+            <button v-if="pedido.jogos.length != 0" class="btn btn-sm btn-outline-danger" @click="removerTodos()">Limpar Sacola</button>
           </h4>
           <hr style="color: white">
-          <div class="row mt-2">
-            <img src="../assets/among_us.jpg" style="width: 180px;" />
+
+          <div v-for="jogo in pedido.jogos" :key="jogo.id" class="row mt-2">
+            <img :src="require(`../assets/${jogo.urlFoto}`)" style="width: 180px;" />
             <div class="card cart-card" style="width: 15rem; padding-left: 0%;">
               <div class="card-body">
                 <div class="row mb-4">
-                  <p class="card-text">Amoug Us</p>
+                  <p class="card-text">{{jogo.nome}}</p>
                 </div>
-                <div class="d-flex flex-row-reverse">
-                  <p class="card-text"><b>R$ 99,99</b></p>
+                <div class="row">
+                  <div class="col-10">
+                    <p class="card-text"><b>R$ {{jogo.valor}}</b></p>
+                  </div>
+                  <div class="col-2 align-self-end">
+                    <button class="btn btn-sm btn-outline-danger" @click="removerJogo(jogo, false)">x</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="row mt-2">
-            <img src="../assets/cyberpunk_2077.png" style="width: 180px;" />
-            <div class="card cart-card" style="width: 15rem; padding-left: 0%;">
-              <div class="card-body">
-                <div class="row mb-4">
-                  <p class="card-text">Cyberpunk</p>
-                </div>
-                <div class="d-flex flex-row-reverse">
-                  <p class="card-text"><b>R$ 199,99</b></p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row mt-2">
-            <img src="../assets/fifa_22.jpg" style="width: 180px;" />
-            <div class="card cart-card" style="width: 15rem; padding-left: 0%;">
-              <div class="card-body">
-                <div class="row mb-4">
-                  <p class="card-text">FIFA 2022</p>
-                </div>
-                <div class="d-flex flex-row-reverse">
-                  <p class="card-text"><b>R$ 249,99</b></p>
-                </div>
-              </div>
-            </div>
-          </div>
+
 
           <div class="row" style="position: inherit;">
             <hr class="my-4" style="color:white">
@@ -194,15 +205,20 @@ export default {
               <h4>Total</h4>
             </div>
             <div class="col" style="color: white; text-align: end;">
-              <strong>R$549,97</strong>
+              <strong>R${{getValorTotal()}}</strong>
             </div>
             <div class="d-grid gap-2 mt-2">
-              <button type="button" class="btn btn-primary"
+              <button :disabled="pedido.jogos.length == 0" type="button" class="btn btn-primary"
                 style="color:white; background-color: #340E80; border-color: #340E80; font-weight: bold;">
                 FAZER PEDIDO
               </button>
             </div>
           </div>
+        </div>
+      </div>
+      <div v-else class="row g-5">
+        <div class="col-md-12 col-lg-8 container clearfix">
+          <h4 style="color: white">Nenhum jogo na sacola</h4>
         </div>
       </div>
     </div>

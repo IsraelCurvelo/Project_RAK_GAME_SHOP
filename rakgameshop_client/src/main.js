@@ -34,6 +34,7 @@ new Vue({
     }
   },
   router,
+  VueTheMask,
   vuetify,
   render: h => h(App)
 }).$mount('#app')
