@@ -273,7 +273,7 @@ export default {
         <div class="col-md-5 col-lg-4 order-md-last">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="" style="color: white">Carrinho</span>
-            <button v-if="pedido.jogos.length != 0" class="btn btn-sm btn-outline-danger" @click="removerTodos()">Limpar
+            <button v-if="pedido.jogos.length != 0 && (validarCartao())" class="btn btn-sm btn-outline-danger" @click="removerTodos()">Limpar
               Sacola</button>
           </h4>
           <hr style="color: white">
