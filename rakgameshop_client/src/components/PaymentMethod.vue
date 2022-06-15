@@ -13,8 +13,8 @@ export default {
     ModalPIX,
     TheMask,
   },
-  data(){
-    return{
+  data() {
+    return {
       usuario: {},
       cliente: {},
       pedido: {
@@ -39,50 +39,50 @@ export default {
       flagPix: false
     }
   },
-  mounted(){
+  mounted() {
     this.usuario = this.$root.usuario;
-    if(this.usuario == null){
-        return this.$router.push({ name: 'login' })
+    if (this.usuario == null) {
+      return this.$router.push({ name: 'login' })
     }
     this.$http.post('http://localhost:5000/api/cliente/buscarcliente', this.usuario).then(res => {
-        this.cliente = res.body;
-        this.buscarSacola();
+      this.cliente = res.body;
+      this.buscarSacola();
     }, res => {
-        console.log(res);
+      console.log(res);
     });
   },
   methods: {
     showAlert() {
       this.$swal('Deseja confirmar a compra?');
     },
-    buscarSacola(){
-      this.$http.post('http://localhost:5000/api/cliente/buscarsacola', this.cliente).then(res => { 
-        this.pedido = res.body 
+    buscarSacola() {
+      this.$http.post('http://localhost:5000/api/cliente/buscarsacola', this.cliente).then(res => {
+        this.pedido = res.body
 
       }, res => {
         console.log(res);
       })
     },
-    removerTodos(){
+    removerTodos() {
       this.pedido.jogos.forEach(jogo => {
         this.removerJogo(jogo, false)
       })
       window.alert("Removidos");
     },
-    removerJogo(jogo, messagem){
+    removerJogo(jogo, messagem) {
       const jogoNaSacola = {
         JogoId: jogo.id,
         ClienteId: this.cliente.id
       };
-      this.$http.delete('http://localhost:5000/api/cliente/removersacola', {body: jogoNaSacola}).then(res => {
-        if(res.status == 202){
+      this.$http.delete('http://localhost:5000/api/cliente/removersacola', { body: jogoNaSacola }).then(res => {
+        if (res.status == 202) {
           window.alert("Erro ao excluir");
-        }else{
+        } else {
           let i = this.pedido.jogos.indexOf(jogo);
           this.pedido.jogos.splice(i, 1);
-          if(messagem){
+          if (messagem) {
             window.alert("Removido");
-          } 
+          }
         }
       })
     },
@@ -167,9 +167,8 @@ export default {
 <template>
 
   <div>
-    <the-mask/>
     <header>
-      <HeaderBar /> 
+      <HeaderBar />
     </header>
 
     <div class="container">
@@ -181,7 +180,7 @@ export default {
         <div class="col-md-12 col-lg-8 container clearfix">
           <h4 style="color: white">Finalizar Compra</h4>
 
-          
+
           <hr style="color: white">
 
           <div v-if="pedido.jogos.length != 0" class="accordion radio mt-4" id="accordionExample">
@@ -203,6 +202,7 @@ export default {
               <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
+                  <the-mask/>
                   <label for="address" class="form-label" style="color: white">Número do cartão</label>
                   <input v-model="cartao.numeroCartao" type="text" class="form-control" id="address" placeholder="0000 0000 0000 00000" v-mask="'#### #### #### ####'" required="">
                   <div class="invalid-feedback">
@@ -273,7 +273,8 @@ export default {
         <div class="col-md-5 col-lg-4 order-md-last">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="" style="color: white">Carrinho</span>
-            <button v-if="pedido.jogos.length != 0" class="btn btn-sm btn-outline-danger" @click="removerTodos()">Limpar Sacola</button>
+            <button v-if="pedido.jogos.length != 0" class="btn btn-sm btn-outline-danger" @click="removerTodos()">Limpar
+              Sacola</button>
           </h4>
           <hr style="color: white">
 
@@ -282,11 +283,11 @@ export default {
             <div class="card cart-card" style="width: 15rem; padding-left: 0%;">
               <div class="card-body">
                 <div class="row mb-4">
-                  <p class="card-text">{{jogo.nome}}</p>
+                  <p class="card-text">{{ jogo.nome }}</p>
                 </div>
                 <div class="row">
                   <div class="col-10">
-                    <p class="card-text"><b>R$ {{jogo.valor}}</b></p>
+                    <p class="card-text"><b>R$ {{ jogo.valor }}</b></p>
                   </div>
                   <div class="col-2 align-self-end">
                     <button class="btn btn-sm btn-outline-danger" @click="removerJogo(jogo, false)">x</button>
@@ -303,7 +304,7 @@ export default {
               <h4>Total</h4>
             </div>
             <div class="col" style="color: white; text-align: end;">
-              <strong>R${{getValorTotal()}}</strong>
+              <strong>R${{ getValorTotal() }}</strong>
             </div>
             <div class="d-grid gap-2 mt-2">
               <button :disabled="pedido.jogos.length == 0" @click="finalizarPedido()" type="button" class="btn btn-primary"
