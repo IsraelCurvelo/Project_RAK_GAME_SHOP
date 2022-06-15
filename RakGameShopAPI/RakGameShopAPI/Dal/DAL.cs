@@ -103,7 +103,7 @@ namespace RaellShoes.Dal
                     {
                         resultado.Add(x);
                     }
-                    return resultado;
+                    return resultado;                
 
                 default:
                     return null;
@@ -208,7 +208,7 @@ namespace RaellShoes.Dal
 
         public List<JogoNaSacola> RemoverJogoDaSacola(JogoNaSacola jogoNaSacola)
         {
-            return dbContext.JogoNaSacola.Where(x => x.JogoId == jogoNaSacola.Id && x.ClienteId == jogoNaSacola.ClienteId).ToList();
+            return dbContext.JogoNaSacola.Where(x => x.JogoId == jogoNaSacola.JogoId && x.ClienteId == jogoNaSacola.ClienteId).ToList();
         }
 
         public Pedido BuscarSacolaCliente(Cliente cliente)
@@ -220,6 +220,11 @@ namespace RaellShoes.Dal
         public List<JogoNaSacola> BuscarJogosdoClienteNaSacola(Cliente cliente)
         {
             return dbContext.JogoNaSacola.Where(x => x.ClienteId == cliente.Id).ToList();
+        }
+
+        public JogoNaSacola ConsultarJogoNaSacola(JogoNaSacola jogoNaSacola)
+        {
+            return dbContext.JogoNaSacola.Where(x => x.ClienteId == jogoNaSacola.ClienteId && x.JogoId == jogoNaSacola.JogoId).FirstOrDefault();
         }
     }
 }
