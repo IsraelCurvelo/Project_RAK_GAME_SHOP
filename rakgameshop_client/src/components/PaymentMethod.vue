@@ -80,6 +80,7 @@ export default {
         } else {
           let i = this.pedido.jogos.indexOf(jogo);
           this.pedido.jogos.splice(i, 1);
+          this.pedido.valorTotal -= jogo.valor;
           if (messagem) {
             window.alert("Removido");
           }
@@ -114,25 +115,16 @@ export default {
       this.flagCartao = true;
       this.flagBoleto = false;
       this.flagPix = false;
-      console.log("Cartao: " + this.flagCartao);
-      console.log("Boleto: " + this.flagBoleto);
-      console.log("PIX: " + this.flagPix);
     },
     setFlagBoleto(){
       this.flagCartao = false;
       this.flagBoleto = true;
       this.flagPix = false;
-      console.log("Cartao: " + this.flagCartao);
-      console.log("Boleto: " + this.flagBoleto);
-      console.log("PIX: " + this.flagPix);
     },
     setFlagPix(){
       this.flagCartao = false;
       this.flagBoleto = false;
       this.flagPix = true;
-      console.log("Cartao: " + this.flagCartao);
-      console.log("Boleto: " + this.flagBoleto);
-      console.log("PIX: " + this.flagPix);
     },
     formatParcela(parcela){
       let parcelaFormat = this.pedido.valorTotal / parcela;
@@ -175,7 +167,7 @@ export default {
       <div class="py-5 text-center">
       </div>
 
-      <div v-if="pedido.jogos" class="row g-5">
+      <div v-if="pedido.jogos" class="row g-7">
 
         <div class="col-md-12 col-lg-8 container clearfix">
           <h4 style="color: white">Finalizar Compra</h4>
@@ -272,8 +264,8 @@ export default {
         </div>
         <div class="col-md-5 col-lg-4 order-md-last">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="" style="color: white">Carrinho</span>
-            <button v-if="pedido.jogos.length != 0 && (validarCartao())" class="btn btn-sm btn-outline-danger" @click="removerTodos()">Limpar
+            <span class="" style="color: white">Sacola</span>
+            <button v-if="pedido.jogos.length != 0" class="btn btn-sm btn-outline-danger" @click="removerTodos()">Limpar
               Sacola</button>
           </h4>
           <hr style="color: white">
@@ -287,7 +279,7 @@ export default {
                 </div>
                 <div class="row">
                   <div class="col-10">
-                    <p class="card-text"><b>R$ {{ jogo.valor }}</b></p>
+                    <p class="card-text"><b>R$ {{ jogo.valor.toFixed(2) }}</b></p>
                   </div>
                   <div class="col-2 align-self-end">
                     <button class="btn btn-sm btn-outline-danger" @click="removerJogo(jogo, false)">x</button>

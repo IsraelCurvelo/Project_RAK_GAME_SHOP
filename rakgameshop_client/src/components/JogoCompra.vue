@@ -98,7 +98,7 @@
                     }
                     else{
                         window.alert("Jogo Adicionado!");
-                        this.$router.push({ name: 'store' })
+                        this.$router.push({ name: 'paymentMethod' })
                     }
                 }, res => {
                     console.log(res);
@@ -122,7 +122,7 @@
                     <div class="col" style="text-align: center; margin-top: 100px; padding-right: 80px;">    
                         <h2>{{jogo.nome}}</h2>
                         <div style="text-align: end; padding-right: 150px; margin-top: 200px;">
-                            <h4>R$ {{jogo.valor}}</h4>
+                            <h4>R$ {{jogo.valor.toFixed(2)}}</h4>
                         </div>
                         <div style="align-items: center;">
                             <div v-if="spawnCompra" class="d-grid gap-2 col-5 mx-auto mt-4">

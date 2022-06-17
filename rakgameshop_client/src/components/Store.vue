@@ -99,7 +99,7 @@ export default {
                     <p class="card-text">Classificação de Idade: {{jogo.classificacao}} anos</p>
                   </div>
                   <div class="d-flex flex-row-reverse">
-                    <p class="card-text"><b>R$ {{jogo.valor}}</b></p>
+                    <p class="card-text"><b>R$ {{jogo.valor.toFixed(2)}}</b></p>
                   </div>
               </div>
             </div>
