@@ -284,6 +284,7 @@ namespace RakGameShopAPI.Controllers
         public IActionResult FinalizarPedido(Pedido pedido)
         {
             pedido.Status = Models.Enum.StatusPedido.PedidoFinalizado;
+            pedido.DataCompra = DateTime.Now;
             string confirmacao = dal.Alterar(pedido);
 
             if (confirmacao == null)
