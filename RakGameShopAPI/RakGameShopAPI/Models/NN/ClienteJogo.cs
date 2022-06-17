@@ -9,16 +9,18 @@ namespace RakGameShopAPI.Models.NN
     {
         public int ClienteId { get; set; }
         public int JogoId { get; set; }
+        public int PedidoId { get; set; }
 
         public ClienteJogo()
         {
                 
         }
 
-        public ClienteJogo(int clienteId, int jogoId)
+        public ClienteJogo(int clienteId, int jogoId, int pedidoId)
         {
             ClienteId = clienteId;
             JogoId = jogoId;
+            PedidoId = pedidoId;
         }
     }
 }
