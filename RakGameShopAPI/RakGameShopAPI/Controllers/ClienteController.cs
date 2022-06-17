@@ -285,6 +285,12 @@ namespace RakGameShopAPI.Controllers
         {
             pedido.Status = Models.Enum.StatusPedido.PedidoFinalizado;
             pedido.DataCompra = DateTime.Now;
+
+            if(pedido.FormaPagamento.Cartao != null)
+            {
+                pedido.FormaPagamento.Cartao.Cliente = pedido.Cliente;
+            }
+
             string confirmacao = dal.Alterar(pedido);
 
             if (confirmacao == null)
