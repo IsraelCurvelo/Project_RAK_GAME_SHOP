@@ -12,6 +12,12 @@
       },
       mounted() {
         this.usuario = this.$root.usuario;
+      },
+      methods:{
+        logOff(){
+          this.$root.usuario = null;
+          return this.$router.push({ name: 'login' })
+        }
       }
     };
 </script>
@@ -53,8 +59,20 @@
             <div class="col">
               <h5 style="color: white">{{usuario.email}}</h5>
             </div>
-            <div class="col">
-              <img src="../../assets/userLogo.svg" class="w-5">
+            <div class="col" style="cursor: pointer">
+              <div class="btn-group dropstart">
+                <img src="../../assets/userLogo.svg" class="w-5" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li>
+                    <router-link to="/dados">
+                      <a class="dropdown-item" href="#">Meus Dados</a>
+                    </router-link>
+                  </li>
+                  <li><a class="dropdown-item" href="#">Histórico de Compras</a></li>
+                  <li><a class="dropdown-item" @click="logOff()">Sair</a></li>
+                </ul>
+              </div>
+              
             </div>
           </div>
         </form>

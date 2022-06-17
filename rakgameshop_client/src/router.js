@@ -11,6 +11,7 @@ import modalBoleto from './components/shared/modals/Boleto';
 import modalPIX from './components/shared/modals/PIX';
 import confirmaCompra from './components/shared/modals/ConfirmaCompra';
 import sucessoPedido from './components/shared/modals/SucessoPedido';
+import clienteDetails from './components/ClienteDetail';
 
 Vue.use(Router);
 
@@ -70,6 +71,11 @@ export default new Router({
       path: '/sucessoPedido',
       name: 'sucessoPedido',
       component: sucessoPedido
+    },
+    {
+      path: '/dados',
+      name: 'dadosCliente',
+      component: clienteDetails
     }
   ]
 })
