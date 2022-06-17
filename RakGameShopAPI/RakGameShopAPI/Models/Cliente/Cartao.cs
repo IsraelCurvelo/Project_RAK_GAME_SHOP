@@ -15,6 +15,7 @@ namespace RakGameShopAPI.Models.Client
         public String CVV { get; set; }
         public Status Status { get; set; }
         public int Parcelas { get; set; }
+        public Cliente Cliente { get; set; }
         public Cartao()
         {
 
