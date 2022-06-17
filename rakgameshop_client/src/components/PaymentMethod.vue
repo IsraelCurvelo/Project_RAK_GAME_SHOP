@@ -93,7 +93,7 @@ export default {
           this.pedido.valorTotal += jogo.valor;
         });
       }
-      return this.pedido.valorTotal;
+      return this.pedido.valorTotal.toFixed(2);
     },
     pagamentoCartao(){
       this.formaPagamento.tipoPagamento = 1;
@@ -141,7 +141,9 @@ export default {
         this.pagamentoPix();
       }
       this.pedido.cliente = this.cliente;
-      this.$http.post('http://localhost:5000/api/cliente/finalizarpedido', {body: this.pedido}).then(res => {
+      console.log(this.pedido);
+      this.$http.post('http://localhost:5000/api/cliente/finalizarpedido', this.pedido).then(res => {
+        console.log(res);
         if(res.status == 204){
           window.alert("Erro ao finalizar pedido");
         }else{

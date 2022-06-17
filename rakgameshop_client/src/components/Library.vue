@@ -43,9 +43,9 @@ export default {
   <div>
     <HeaderBar spanLinks="true" />
     <div class="container mt-4" style="margin-bottom: 60px">
-      <div class="row justify-content-center mb-3" style="margin-top: 100px">
+      <div class="row justify-content-center" style="margin-top: 100px">
         <div v-for="jogo in jogos" :key="jogo.id" class="col-3">
-          <div class="card game-card">
+          <div class="card game-card mb-3">
             <img :src="require(`../assets/${jogo.urlFoto}`)" class="card-img-top" />
             <div class="card-body">
               <div class="row mb-4">
