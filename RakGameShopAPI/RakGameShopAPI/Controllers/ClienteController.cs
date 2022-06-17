@@ -215,8 +215,7 @@ namespace RakGameShopAPI.Controllers
                     Cliente = cliente,
                     Jogo = jogo,
                     DataCompra = DateTime.Now,
-                    FormaPagamento = null,
-                    Parcelamento = 0,
+                    FormaPagamento = null,                    
                     Status = Models.Enum.StatusPedido.Sacola,
                     ValorTotal = 0
                 };                
@@ -300,7 +299,8 @@ namespace RakGameShopAPI.Controllers
                     ClienteJogo clienteJogo = new ClienteJogo()
                     {
                         ClienteId = pedido.Cliente.Id,
-                        JogoId = item.Id
+                        JogoId = item.Id,
+                        PedidoId = pedido.Id
                     };
 
                     string confirmacaoCadastro = dal.Cadastrar(clienteJogo);
