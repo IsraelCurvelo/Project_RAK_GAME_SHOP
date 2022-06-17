@@ -46,7 +46,9 @@ export default {
       <div class="row justify-content-center" style="margin-top: 100px">
         <div v-for="jogo in jogos" :key="jogo.id" class="col-3">
           <div class="card game-card mb-3">
-            <img :src="require(`../assets/${jogo.urlFoto}`)" class="card-img-top" />
+            <router-link :to="`/gameDetail:${jogo.id}`">
+              <img :src="require(`../assets/${jogo.urlFoto}`)" class="card-img-top">
+            </router-link>
             <div class="card-body">
               <div class="row mb-4">
                 <p class="card-text">{{jogo.nome}}</p>
