@@ -314,5 +314,28 @@ namespace RakGameShopAPI.Controllers
             else
                 return new StatusCodeResult(204);
         }
+
+        [HttpPost("historicopedidocliente")]
+        public IActionResult HistoricoPedidosCliente(Cliente cliente)
+        {
+            List<Pedido> pedidos = dal.BuscarPedidosDoCliente(cliente);
+
+            List<ClienteJogo> jogos = dal.BuscarPedidosDoClienteJogos(cliente);
+
+            foreach (var pedido in pedidos)
+            {
+                foreach (var clienteJogo in jogos)
+                {
+                    if(clienteJogo.PedidoId == pedido.Id)
+                    {
+                        Jogo jogo = (Jogo)dal.ConsultarId(new Jogo() { Id = clienteJogo.JogoId });
+                        pedido.Jogos.Add(jogo);                        
+                    }
+                }
+            }  
+            
+
+            return Ok(pedidos);
+        }       
     }
 }
