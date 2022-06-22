@@ -103,7 +103,7 @@ export default {
                     <p class="card-text"><strong>{{jogo.nome}}</strong></p>
                   </div>
                   <div class="row mb-4">
-                    <p class="card-text">Classificação de Idade: {{jogo.classificacao}} anos</p>
+                    <p class="card-text">Classificação de Idade: {{jogo.classificacao}}</p>
                   </div>
                   <div class="d-flex flex-row-reverse">
                     <p class="card-text"><b>R$ {{jogo.valor.toFixed(2)}}</b></p>

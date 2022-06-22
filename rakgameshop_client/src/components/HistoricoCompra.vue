@@ -48,6 +48,25 @@
                 }, res => {
                     console.log(res)
                 });
+            },
+            getFormaPagamento(formaPagamento){
+                let cartao = "";
+                if(formaPagamento.cartao != null){
+                    let formatCartao = formaPagamento.cartao.numeroCartao.split('');
+                    cartao = "Cartão ************" + formatCartao[15] + formatCartao[16] + formatCartao[17] + formatCartao[18];
+                }
+                switch(formaPagamento.tipoPagamento){
+                    case 0:
+                        return "Indefinido";
+                    case 1:
+                        return cartao.toString();
+                    case 2:
+                        return "Boleto";
+                    case 3:
+                        return "Pix";
+                    default:
+                        return "";
+                }      
             }
         }
     }
@@ -60,12 +79,12 @@
             <div class="row justify-content-center">
                 <div class="col-7">
                     <div class="row justify-content-center mt-3">
-                        <h5>Histórico de Compras</h5>
+                        <h4>Histórico de Compras</h4>
                         <hr>
                         <div v-for="pedido in pedidos" :key="pedido.id" style="background-color: #414040;" class="pt-2 mb-3">
                             <div class="row justify-content-between">
                                 <div class="col-4">
-                                    <p>Pedido {{pedido.id}}</p>
+                                    <h5><b>Pedido {{pedido.id}}</b></h5>
                                 </div>
                                 <div class="col-4">
                                     <p>{{formatDate(pedido.dataCompra)}}</p>
@@ -73,7 +92,7 @@
                             </div>
                             <div v-for="jogo in pedido.jogos" :key="jogo.id" class="row justify-content-between">
                                 <div class="col-4">
-                                    <p>Pedido {{jogo.nome}}</p>
+                                    <p>{{jogo.nome}}</p>
                                 </div>
                                 <div class="col-4">
                                     <p>{{jogo.valor.toFixed(2)}}</p>
@@ -82,7 +101,7 @@
                             <hr>
                             <div class="row justify-content-between">
                                 <div class="col-4">
-                                    <p>Pix</p>
+                                    <p>{{getFormaPagamento(pedido.formaPagamento)}}</p>
                                 </div>
                                 <div class="col-4">
                                     <p>{{pedido.valorTotal.toFixed(2)}}</p>

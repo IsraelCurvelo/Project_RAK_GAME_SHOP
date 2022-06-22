@@ -37,23 +37,27 @@ export default {
       flagCartao: false,
       flagBoleto: false,
       flagPix: false,
+      flagCompra: false,
       message: "",
       messageError: ""
     }
   },
   mounted() {
-    this.usuario = this.$root.usuario;
-    if (this.usuario == null) {
-      return this.$router.push({ name: 'login' })
-    }
-    this.$http.post('http://localhost:5000/api/cliente/buscarcliente', this.usuario).then(res => {
-      this.cliente = res.body;
-      this.buscarSacola();
-    }, res => {
-      console.log(res);
-    });
+    this.atualizaPagina();
   },
   methods: {
+    atualizaPagina(){
+      this.usuario = this.$root.usuario;
+      if (this.usuario == null) {
+        return this.$router.push({ name: 'login' })
+      }
+      this.$http.post('http://localhost:5000/api/cliente/buscarcliente', this.usuario).then(res => {
+        this.cliente = res.body;
+        this.buscarSacola();
+      }, res => {
+        console.log(res);
+      });
+    },
     showAlert() {
       this.$swal('Deseja confirmar a compra?');
     },
@@ -80,12 +84,12 @@ export default {
         if (res.status == 202) {
          this.messageError = "Erro ao excluir";
         } else {
-          let i = this.pedido.jogos.indexOf(jogo);
-          this.pedido.jogos.splice(i, 1);
-          this.pedido.valorTotal -= jogo.valor;
           if (messagem) {
             this.message = "Removido!";
           }
+          let i = this.pedido.jogos.indexOf(jogo);
+          this.pedido.jogos.splice(i, 1);
+          this.pedido.valorTotal -= jogo.valor;
         }
       })
     },
@@ -114,16 +118,19 @@ export default {
       this.pedido.formaPagamento = this.formaPagamento;
     },
     setFlagCartao(){
+      this.flagCompra = true;
       this.flagCartao = true;
       this.flagBoleto = false;
       this.flagPix = false;
     },
     setFlagBoleto(){
+      this.flagCompra = true;
       this.flagCartao = false;
       this.flagBoleto = true;
       this.flagPix = false;
     },
     setFlagPix(){
+      this.flagCompra = true;
       this.flagCartao = false;
       this.flagBoleto = false;
       this.flagPix = true;
@@ -281,7 +288,7 @@ export default {
                     <p class="card-text"><b>R$ {{ jogo.valor.toFixed(2) }}</b></p>
                   </div>
                   <div class="col-2 align-self-end">
-                    <button class="btn btn-sm btn-outline-danger" @click="removerJogo(jogo, false)">x</button>
+                    <button class="btn btn-sm btn-outline-danger" @click="removerJogo(jogo, true)">x</button>
                   </div>
                 </div>
               </div>
@@ -296,13 +303,13 @@ export default {
               <strong>R${{ getValorTotal() }}</strong>
             </div>
             <div class="d-grid gap-2 mt-2">
-              <button :disabled="pedido.jogos.length == 0" @click="finalizarPedido()" type="button" class="btn btn-primary"
+              <button :disabled="pedido.jogos.length == 0 || !flagCompra" @click="finalizarPedido()" type="button" class="btn btn-primary"
                 style="color:white; background-color: #340E80; border-color: #340E80; font-weight: bold;">
                 FAZER PEDIDO
               </button>
             </div>
           </div>
-          <div v-if="message.length > 0" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+          <div v-if="message" class="alert alert-primary alert-dismissible fade show mt-3" role="alert">
               {{ message }}
               <button type="button" @click="message = ''" data-dismiss="alert"
                   aria-label="Close">
