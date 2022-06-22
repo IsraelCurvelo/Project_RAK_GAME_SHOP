@@ -16,12 +16,14 @@ namespace RakGameShopAPI.Models.Client
         public Status Status { get; set; }
         public int Parcelas { get; set; }
         public Cliente Cliente { get; set; }
+
+        public Bandeira Bandeira { get; set; }
         public Cartao()
         {
 
         }
 
-        public Cartao(int id, string numeroCartao, string titularCartao, string cPF, string validade, string cVV, Status status)
+        public Cartao(int id, string numeroCartao, string titularCartao, string cPF, string validade, string cVV, Status status, Bandeira bandeira)
         {
             Id = id;
             NumeroCartao = numeroCartao;
@@ -30,6 +32,7 @@ namespace RakGameShopAPI.Models.Client
             Validade = validade;
             CVV = cVV;
             Status = status;
+            Bandeira = bandeira;
         }
     }
 }
