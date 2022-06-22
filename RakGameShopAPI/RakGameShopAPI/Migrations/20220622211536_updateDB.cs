@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RakGameShopAPI.Migrations
 {
-    public partial class Inicial : Migration
+    public partial class updateDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,7 +15,8 @@ namespace RakGameShopAPI.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     ClienteId = table.Column<int>(nullable: false),
-                    JogoId = table.Column<int>(nullable: false)
+                    JogoId = table.Column<int>(nullable: false),
+                    PedidoId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -114,7 +115,8 @@ namespace RakGameShopAPI.Migrations
                     CVV = table.Column<string>(nullable: true),
                     Status = table.Column<int>(nullable: false),
                     Parcelas = table.Column<int>(nullable: false),
-                    ClienteId = table.Column<int>(nullable: true)
+                    ClienteId = table.Column<int>(nullable: true),
+                    Bandeira = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -158,8 +160,7 @@ namespace RakGameShopAPI.Migrations
                     DataCompra = table.Column<DateTime>(nullable: false),
                     FormaPagamentoId = table.Column<int>(nullable: true),
                     ValorTotal = table.Column<double>(nullable: false),
-                    Status = table.Column<int>(nullable: false),
-                    Parcelamento = table.Column<int>(nullable: false)
+                    Status = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

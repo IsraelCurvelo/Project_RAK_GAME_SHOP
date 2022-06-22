@@ -9,7 +9,10 @@ namespace RakGameShopAPI.Models.Enum
     {
         MasterCard,
         Visa,
-        Elo
+        Elo,
+        Maestro,
+        Hipercard,
+        AmericanEX
         
     }
 }

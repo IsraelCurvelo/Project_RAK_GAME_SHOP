@@ -32,7 +32,8 @@ export default {
         validade: '',
         cvv: '',
         status: 1,
-        parcelas: 1
+        parcelas: 1,
+        bandeira: 1
       },
       flagCartao: false,
       flagBoleto: false,
@@ -200,11 +201,29 @@ export default {
               <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                  <the-mask/>
-                  <label for="address" class="form-label" style="color: white">Número do cartão</label>
-                  <input v-model="cartao.numeroCartao" type="text" class="form-control" id="address" placeholder="0000 0000 0000 00000" v-mask="'#### #### #### ####'" required="">
-                  <div class="invalid-feedback">
-                    Insira numero do cartão.
+                  <div class="row mt-2">
+                    <div class="col-md-8">
+                      <the-mask/>
+                      <label for="address" class="form-label" style="color: white">Número do cartão</label>
+                      <input v-model="cartao.numeroCartao" type="text" class="form-control" id="address" placeholder="0000 0000 0000 00000" v-mask="'#### #### #### ####'" required="">
+                      <div class="invalid-feedback">
+                        Insira numero do cartão.
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <label for="state" class="form-label" style="color: white">Bandeira</label>
+                      <select v-model="cartao.bandeira" class="form-select" aria-label="Default select example">
+                        <option selected value="0">MasterCard</option>
+                        <option value="1">Visa</option>
+                        <option value="2">Elo</option>
+                        <option value="3">Maestro</option>
+                        <option value="4">Hipercard</option>
+                        <option value="5">AmricanEX</option>
+                      </select>
+                      <div class="invalid-feedback">
+                        Selecione um estado válido.
+                      </div>
+                    </div>
                   </div>
 
                   <div class="row mt-2">
@@ -237,7 +256,7 @@ export default {
                         Selecione um estado válido.
                       </div>
                     </div>
-                     <div class="col-md-3">
+                    <div class="col-md-3">
                       <label for="state" class="form-label" style="color: white">Parcelas</label>
                       <select v-model="cartao.parcelas" class="form-select" aria-label="Default select example">
                         <option selected value="1">1X ({{formatParcela(1)}})</option>

@@ -9,7 +9,7 @@ using RaellShoes.Data;
 namespace RakGameShopAPI.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20220621140117_updateDB")]
+    [Migration("20220622211536_updateDB")]
     partial class updateDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -97,6 +97,8 @@ namespace RakGameShopAPI.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Bandeira");
 
                     b.Property<string>("CPF");
 

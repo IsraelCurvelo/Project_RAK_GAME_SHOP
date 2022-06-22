@@ -43,7 +43,6 @@
                 this.$http.post('http://localhost:5000/api/cliente/historicopedidocliente', this.cliente).then(res => {
                 if(res.status == 200){
                     this.pedidos = res.body;
-                    console.log(this.pedidos)
                 }
                 }, res => {
                     console.log(res)
@@ -53,7 +52,32 @@
                 let cartao = "";
                 if(formaPagamento.cartao != null){
                     let formatCartao = formaPagamento.cartao.numeroCartao.split('');
-                    cartao = "Cartão ************" + formatCartao[15] + formatCartao[16] + formatCartao[17] + formatCartao[18];
+                    let bandeira = 'padrao';
+                    console.log(bandeira);
+                    switch(formaPagamento.cartao.bandeira){
+                        case 0:
+                            bandeira = "MasterCard"
+                            break;
+                        case 1:
+                            bandeira = "Visa"
+                            break;
+                        case 2:
+                            bandeira = "Elo"
+                            break;
+                        case 3:
+                            bandeira = "Maestro"
+                            break;
+                        case 4:
+                            bandeira = "Hipercard"
+                            break;
+                        case 5:
+                            bandeira = "AmericanEX"
+                            break;
+                        default:
+                            break;
+                    }
+                    console.log(bandeira);
+                    cartao = "Cartão: " + bandeira + " " + formatCartao[15] + formatCartao[16] + formatCartao[17] + formatCartao[18];
                 }
                 switch(formaPagamento.tipoPagamento){
                     case 0:
