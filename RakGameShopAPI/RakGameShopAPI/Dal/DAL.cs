@@ -228,7 +228,7 @@ namespace RaellShoes.Dal
         }
         public List<Pedido> BuscarPedidosDoCliente(Cliente cliente)
         {
-            return dbContext.Pedido.Include(x=> x.FormaPagamento).Where(x => x.Cliente.Id == cliente.Id && x.Status == RakGameShopAPI.Models.Enum.StatusPedido.PedidoFinalizado).ToList();
+            return dbContext.Pedido.Include(x=> x.FormaPagamento).Include(x=> x.FormaPagamento.Cartao).Where(x => x.Cliente.Id == cliente.Id && x.Status == RakGameShopAPI.Models.Enum.StatusPedido.PedidoFinalizado).ToList();
         }
         
         public List<ClienteJogo> BuscarPedidosDoClienteJogos(Cliente cliente)
