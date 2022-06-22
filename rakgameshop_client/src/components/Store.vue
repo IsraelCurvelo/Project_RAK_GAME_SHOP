@@ -23,11 +23,18 @@ export default {
   created() {
     this.$http.get('http://localhost:5000/api/admin/buscarjogos').then(res =>{
       this.jogos = res.body;
-      this.jogosCarousel.push(this.jogos[0]);
-      this.jogosCarousel.push(this.jogos[1]);
-      this.jogosCarousel.push(this.jogos[2]);
-      this.jogosCarousel.push(this.jogos[3]);
-
+      if(this.jogos[0] != undefined){
+        this.jogosCarousel.push(this.jogos[0]);
+      }
+      if(this.jogos[1] != undefined){
+        this.jogosCarousel.push(this.jogos[1]);
+      }
+      if(this.jogos[2] != undefined){
+        this.jogosCarousel.push(this.jogos[2]);
+      }
+      if(this.jogos[3] != undefined){
+        this.jogosCarousel.push(this.jogos[3]);
+      }
     }, res => {
       console.log(res);
     });

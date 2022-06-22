@@ -1,5 +1,5 @@
 <script>
-import Header from './shared/HeaderBarDetail';
+import Header from './shared/HeaderBarAdmDetail';
 import TheMask from 'vue-the-mask';
 
 export default {

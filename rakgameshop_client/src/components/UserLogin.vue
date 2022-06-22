@@ -15,7 +15,7 @@
                     if(res.status == 200){
                         this.$root.setUsuario(res.body);
                         if(res.body.admin){
-                            return this.$router.push({ name: 'newProduct' });
+                            return this.$router.push({ name: 'listJogos' });
                         }
                     return this.$router.push({ name: 'store' });
                     }else{

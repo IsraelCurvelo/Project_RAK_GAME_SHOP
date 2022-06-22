@@ -36,7 +36,9 @@ export default {
       },
       flagCartao: false,
       flagBoleto: false,
-      flagPix: false
+      flagPix: false,
+      message: "",
+      messageError: ""
     }
   },
   mounted() {
@@ -67,7 +69,7 @@ export default {
       this.pedido.jogos.forEach(jogo => {
         this.removerJogo(jogo, false)
       })
-      window.alert("Removidos");
+      this.message = "Removidos!";
     },
     removerJogo(jogo, messagem) {
       const jogoNaSacola = {
@@ -76,13 +78,13 @@ export default {
       };
       this.$http.delete('http://localhost:5000/api/cliente/removersacola', { body: jogoNaSacola }).then(res => {
         if (res.status == 202) {
-          window.alert("Erro ao excluir");
+         this.messageError = "Erro ao excluir";
         } else {
           let i = this.pedido.jogos.indexOf(jogo);
           this.pedido.jogos.splice(i, 1);
           this.pedido.valorTotal -= jogo.valor;
           if (messagem) {
-            window.alert("Removido");
+            this.message = "Removido!";
           }
         }
       })
@@ -141,13 +143,11 @@ export default {
         this.pagamentoPix();
       }
       this.pedido.cliente = this.cliente;
-      console.log(this.pedido);
       this.$http.post('http://localhost:5000/api/cliente/finalizarpedido', this.pedido).then(res => {
-        console.log(res);
         if(res.status == 204){
-          window.alert("Erro ao finalizar pedido");
+          this.messageError = "Erro ao finalizar pedido";
         }else{
-          window.alert("Pedido finalizado!");
+          this.message = "Pedido finalizado!";
           this.$router.push({ name: 'library' })
         }
       })
@@ -173,10 +173,7 @@ export default {
 
         <div class="col-md-12 col-lg-8 container clearfix">
           <h4 style="color: white">Finalizar Compra</h4>
-
-
           <hr style="color: white">
-
           <div v-if="pedido.jogos.length != 0" class="accordion radio mt-4" id="accordionExample">
             <div class="accordion-item" style="background-color: #414040;">
               <h2 class="accordion-header" id="headingTwo">
@@ -290,8 +287,6 @@ export default {
               </div>
             </div>
           </div>
-
-
           <div class="row" style="position: inherit;">
             <hr class="my-4" style="color:white">
             <div class="col" style="color: white">
@@ -306,6 +301,20 @@ export default {
                 FAZER PEDIDO
               </button>
             </div>
+          </div>
+          <div v-if="message.length > 0" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+              {{ message }}
+              <button type="button" @click="message = ''" data-dismiss="alert"
+                  aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div v-if="messageError > 0" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+            {{ messageError }}
+            <button type="button" @click="messageError = ''" data-dismiss="alert"
+                aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
           </div>
         </div>
       </div>

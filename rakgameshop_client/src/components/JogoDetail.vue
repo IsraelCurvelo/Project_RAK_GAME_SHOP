@@ -1,5 +1,5 @@
 <script>
-    import Header from './shared/HeaderBarAdm'
+    import Header from './shared/HeaderBarAdmList'
 
     export default {
         components:{
@@ -7,18 +7,8 @@
         },
         data(){
             return {
-                jogo: {
-                    Nome: "",
-                    Descricao: "",
-                    Categoria: "",
-                    Classificacao: "",
-                    Tamanho: "",
-                    DataLancamento: "",
-                    DataCadastro: "",
-                    Desenvolvedora: "",
-                    URLFoto: "",
-                    Status: 1
-                },
+                id: this.$route.params.id.replace(":", ""),
+                jogo: {},
                 usuario: {},
                 message: "",
                 messageError: "",
@@ -29,10 +19,22 @@
             if(this.usuario == null || !this.usuario.admin){
                 return this.$router.push({ name: 'login' })
             }
+            this.$http.get('http://localhost:5000/api/admin/buscarjogos').then(res =>{
+                this.jogos = res.body;
+                this.jogos.map(j => {   
+                    if(j.id == this.id){
+                        this.jogo = j;
+                    }
+                })
+                this.jogo.dataLancamento = this.formatDate(this.jogo.dataLancamento);
+                console.log(this.jogo);
+            }, res => {
+                console.log(res);
+            });
         },
         methods: {
-            formatDate() {
-                let d = new Date();
+            formatDate(date) {
+                let d = new Date(date);
                 let month = (d.getMonth() + 1).toString();
                 let day = d.getDate().toString();
                 let year = d.getFullYear();
@@ -49,12 +51,9 @@
                 return stringNova;
             },
             salvarJogo(){
-                this.jogo.DataCadastro = this.formatDate()
-                this.jogo.URLFoto = this.gerarUrl()
-                console.log(this.jogo);
-                this.$http.post('http://localhost:5000/api/admin/cadastrarjogo', this.jogo).then(res => {
+                this.$http.put('http://localhost:5000/api/admin/alterarjogo', this.jogo).then(res => {
                     if(res.status == 200){
-                        this.message = "Jogo Cadastrado!";
+                        this.message = "Jogo Alterado!";
                     }else{
                         this.messageError = "Erro ao Cadastrar!";
                     }
@@ -81,64 +80,58 @@
                     <form class="form-new">
                         <div class="row justify-content-center mt-3">
                             <div class="col-3">
-                                <h5>Cadastro de Jogo</h5>
+                                <h5>Editar Jogo</h5>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-8 mb-3 mt-2">
+                            <div class="col-12 mb-3 mt-2">
                                 <label class="form-label">Nome do Jogo</label>
-                                <input v-model="jogo.Nome" type="text" id="Nome" class="form-control">
-                            </div>
-                            <div class="col-4 mb-3 mt-2">
-                                <div>
-                                    <label class="form-label">Foto do Produto</label><br>
-                                    <input id="fotoUrl" type="file" class="form-control">
-                                </div>
+                                <input v-model="jogo.nome" type="text" id="Nome" class="form-control">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12 mb-3 mt-2">
                                 <label class="form-label">Descrição</label>
-                                <input v-model="jogo.Descricao" type="text" class="form-control" id="descricao">
+                                <input v-model="jogo.descricao" type="text" class="form-control" id="descricao">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12 mb-3 mt-2">
                                 <label class="form-label">Valor</label>
-                                <input v-model="jogo.Valor" type="text" class="form-control" id="descricao">
+                                <input v-model="jogo.valor" type="text" class="form-control" id="descricao">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12 mb-3 mt-2">
                                 <label class="form-label">Categoria</label>
-                                <input v-model="jogo.Categoria" type="text" class="form-control" id="categoria">
+                                <input v-model="jogo.categoria" type="text" class="form-control" id="categoria">
                             </div>
                         </div>
                         <div class="row">
                             <div class="mb-3 mt-2">
                                 <label class="form-label">Classificação</label>
-                                <input v-model="jogo.Classificacao" type="text" class="form-control" id="classificacao">
+                                <input v-model="jogo.classificacao" type="text" class="form-control" id="classificacao">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-6 mb-3 mt-2">
                                 <label class="form-label">Tamanho</label>
-                                <input v-model="jogo.Tamanho" type="text" class="form-control" id="tamanho">
+                                <input v-model="jogo.tamanho" type="text" class="form-control" id="tamanho">
                             </div>
                             <div class="col-6 mb-3 mt-2">
                                 <label class="form-label">Data de Lançamento</label>
-                                <input v-model="jogo.DataLancamento" type="date" class="form-control" id="dataLancamento">
+                                <input v-model="jogo.dataLancamento" type="date" class="form-control" id="dataLancamento">
                             </div>
                         </div>
                         <div class="row">
                             <div class="mb-3 mt-2">
                                 <label class="form-label">Desenvolvedora</label>
-                                <input v-model="jogo.Desenvolvedora" type="text" class="form-control" id="desenvolvedora">
+                                <input v-model="jogo.desenvolvedora" type="text" class="form-control" id="desenvolvedora">
                             </div>
                         </div>
                         <div class="row">
                             <div class="mb-3 mt-2">
-                                <button class="btn btn-md btt-submit" @click="salvarJogo()">Cadastrar</button>
+                                <button class="btn btn-md btt-submit" @click="salvarJogo()">Confirmar</button>
                             </div>
                         </div>
                         <div v-if="message" class="alert alert-success alert-dismissible fade show" role="alert">

@@ -14,7 +14,9 @@
                 jogos: [],
                 usuario: {},
                 cliente: {},
-                message: 'Adicionar jogo à sacola',
+                message: "",
+                messageError: "",
+                messageButton: 'Adicionar jogo à sacola',
                 disabledButton: false,
                 spawnCompra: true,
                 spawnDownload: false
@@ -65,19 +67,19 @@
                 }
                 this.$http.post('http://localhost:5000/api/cliente/verificarjogosacola', pedido).then(res => {
                     if(res.status == 201){
-                        this.message = 'Jogo já adicionado'
+                        this.messageButton = 'Jogo já adicionado'
                         this.disabledButton = true;
                         this.spawnCompra = false;
                         this.spawnDownload = false; 
                     }
                     else if(res.status == 204){
-                        this.message = 'Jogo já adquirido'
+                        this.messageButton = 'Jogo já adquirido'
                         this.disabledButton = true;
                         this.spawnCompra = false;
                         this.spawnDownload = true;
                     }
                     else if (res.status == 200){
-                        this.message = 'Adicionar jogo à sacola'
+                        this.messageButton = 'Adicionar jogo à sacola'
                         this.disabledButton = false;
                         this.spawnCompra = true;
                         this.spawnDownload = false;
@@ -92,16 +94,16 @@
                 }
                 this.$http.post('http://localhost:5000/api/cliente/adicionarjogosacola', pedido).then(res => {
                     if(res.staus == 204){
-                        window.alert("Jogo já adquirido");
+                        this.messageError = "Jogo já adquirido";
                     }
                     else if(res.staus == 201){
-                        window.alert("Jogo já adicionado");
+                        this.messageError = "Jogo já adicionado"
                     }
                     else if(res.staus == 202){
-                        window.alert("Erro ao adicionar");
+                        this.messageError = "Erro ao adicionar"
                     }
                     else{
-                        window.alert("Jogo Adicionado!");
+                        this.message = "Jogo Adicionado!";
                         this.$router.push({ name: 'store' })
                     }
                 }, res => {
@@ -133,10 +135,25 @@
                                 <button class="btn btn-lg btt-submit">Comprar Agora</button>
                             </div>
                             <div class="d-grid gap-2 col-5 mx-auto mt-4" >
-                                <button class="btn btn-lg btt-outline-submit" @click="adicionarJogoSacola()" :disabled="disabledButton">{{this.message}}</button>
+                                <button class="btn btn-lg btt-outline-submit" @click="adicionarJogoSacola()" :disabled="disabledButton">{{this.messageButton}}</button>
                             </div>
                              <div v-if="spawnDownload" class="d-grid gap-2 col-5 mx-auto mt-4">
                                 <a class="btn btn-lg btt-submit" type="button" :href="require(`../assets/${jogo.urlFoto}`)" download="">Download</a>
+                            </div>
+                             <div v-if="message" class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" @click="message = null" data-dismiss="alert"
+                                    aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div v-if="messageError" class="alert alert-danger alert-dismissible fade show"
+                                role="alert">
+                                {{ messageError }}
+                                <button type="button" @click="messageError = null" data-dismiss="alert"
+                                    aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
                         </div>
                     </div>

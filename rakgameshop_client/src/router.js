@@ -12,6 +12,10 @@ import modalPIX from './components/shared/modals/PIX';
 import confirmaCompra from './components/shared/modals/ConfirmaCompra';
 import sucessoPedido from './components/shared/modals/SucessoPedido';
 import clienteDetails from './components/ClienteDetail';
+import admDetails from './components/AdminDetail';
+import ListJogos from './components/ListJogos';
+import jogoDetail from './components/JogoDetail';
+import HistoricoCompra from './components/HistoricoCompra';
 
 Vue.use(Router);
 
@@ -76,6 +80,26 @@ export default new Router({
       path: '/dados',
       name: 'dadosCliente',
       component: clienteDetails
-    }
+    },
+    {
+      path: '/jogos',
+      name: 'listJogos',
+      component: ListJogos
+    },
+    {
+      path: '/jogoDetail:id',
+      name: 'editJogo',
+      component: jogoDetail
+    },
+    {
+      path: '/historico',
+      name: 'historico',
+      component: HistoricoCompra
+    },
+    {
+      path: '/dadosAdm',
+      name: 'dadosAdm',
+      component: admDetails
+    },
   ]
 })
